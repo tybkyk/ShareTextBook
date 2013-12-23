@@ -2,4 +2,5 @@ ShareTextBook
 =============
 
 ShareTextBook by yk and xxf
-//test
+
+12.23 Establish the project on github

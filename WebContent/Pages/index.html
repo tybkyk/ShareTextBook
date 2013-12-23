@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Share Text Book</title>
+<link rel="stylesheet" type="text/css" href="../css/Index.css" />
+<script src="../js/jquery.min.js">
+</script>
+<script>
+		$(document).ready(function(){
+  			$("#discuss").click(function(){
+				var $textarea = $("<textarea></textarea>");
+				var $hr=$("<hr>");
+				var $btn=$("<button>submit</button>");
+  				$textarea.attr("class","aaa");
+				$hr.attr("class","aaa");
+				$btn.attr("class","aaa");
+				$("aa").append($hr);
+  				$("aa").append($textarea);    		
+				$("aa").append($btn);
+  				});
+				
+			$(".aaa").live("click",function(){
+    			$(".aaa").slideToggle();
+				$("aa").append("Thank you for discussing");
+				document.getElementById("discuss").value="已评论";
+				});
+				
+			$("#alter").click(function(){
+				window.open ('page.html', 'newwindow', 'height=400, width=600, top=0,left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no') 
+				});
+				
+			$("#convert").click(function(){
+				alert("服务器操作 这是个下载链接");
+				});
+	});
+</script>
+</head>
+
+<body>
+
+<div class="container">
+  <header>
+    <a href="#"><img src="" alt="test" width="180" height="90" id="Insert_logo" style="background-color: #C6D580; display:block;" /></a>
+  </header>
+  <div class="sidebar1" >
+    <ul class="nav">
+        <li><a href="index.html">高级用户</a></li>
+        <li><a href="#">普通用户</a></li>
+        <li><a href="#">链接 3</a></li>
+        <li><a href="#">链接 4</a></li>
+    </ul>
+   <!-- end .sidebar1 --></div>
+  <div class="content">
+  	<div class="form">
+  	<input type="button" id="discuss" onclick="this.disabled=true" value="评论">
+  	<input type="button" id="alter" value="修改">
+  	<input type="button" id="convert" value="转pdf">
+</div>
+<hr>
+    <div class="textfield">
+		<h2>什么是 HTML？</h2>
+		<p>HTML 是用来描述网页的一种语言。</p>
+		<ul>
+			<li>HTML 指的是超文本标记语言 (<b>H</b>yper <b>T</b>ext <b>M</b>arkup <b>L</b>anguage)</li>
+			<li>HTML 不是一种编程语言，而是一种<em>标记语言</em> (markup language)		</li>
+			<li>标记语言是一套<em>标记标签</em> (markup tag)</li>
+			<li>HTML 使用<em>标记标签</em>来描述网页</li>
+		</ul>
+	</div>
+    <div class="discuss">
+    	<aa></aa>
+        </div>
+   
+
+
+    
+
+    <!-- end .content --></div>
+  <footer>
+  
+  </footer>
+  <!-- end .container --></div>
+</body>
+</html>

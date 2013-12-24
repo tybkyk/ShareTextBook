@@ -8,3 +8,5 @@ ShareTextBook by yk and xxf
 			js file in ../js,
 			public pages in ../Pages,
 			inpublic pages that create/response by jsp/servlet in WEB-INF/view/..
+			
+12.24	Create new branch:Developing

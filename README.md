@@ -1,7 +1,7 @@
 ShareTextBook
 =============
 
-ShareTextBook by yk and xxf
+ShareTextBook by yk and xyf
 
 12.23 	Establish the project on github
 		PS:	put css file in ../css ,

@@ -10,3 +10,5 @@ ShareTextBook by yk and xyf
 			inpublic pages that create/response by jsp/servlet in WEB-INF/view/..
 			
 12.24	Create new branch:Developing
+
+12.27   Try to use servlet to connect DB and realize user login

@@ -40,4 +40,3 @@ public class userinfo {
     	this.userAurtority = userAurtority;
     }
 }
-    

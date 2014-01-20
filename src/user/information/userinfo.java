@@ -9,7 +9,8 @@ public class userinfo {
     // 用户密码
     private int userAurtority;
     // 用户状态
-    
+    private String userEmail;
+    //用户邮箱
     /*
     public int getUserId(){
     	return userId;
@@ -38,5 +39,12 @@ public class userinfo {
     }
     public void setUserAurtority(int userAurtority){
     	this.userAurtority = userAurtority;
+    }
+    
+    public String getUserEmail(){
+    	return userEmail;
+    }
+    public void setUserEmail(String userEmail){
+    	this.userEmail=userEmail;
     }
 }

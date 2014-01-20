@@ -16,13 +16,20 @@ public class userdao {
 			con = dbcon.initDB();
 			stmt = con.createStatement();
 
-			// change table name！！！
+			// cast是个函数 所以不能用''包括
 
-			String sql = "INSERT INTO user1 (user_name,user_password,user_aurtority)VALUES ('"
+			String sql = "INSERT INTO users (uid,uname,upassword,uauthority,uemail,ureg_date)VALUES ("
+					+"cast(concat(2,right(UUID_SHORT(),8)) as signed)"+",'"
 					+ user.getUserName()
 					+ "','"
 					+ user.getUserPassword()
-					+ "','" + user.getUserAurtority() + "')";
+					+ "','" 
+					+ user.getUserAurtority()
+					+ "','"
+					+user.getUserEmail()
+					+"',"
+					+"sysdate()"
+					+")";
 			stmt.executeUpdate(sql);
 
 		} catch (SQLException e) {
@@ -57,7 +64,7 @@ public class userdao {
 				stmt = con.createStatement();
 
 				rs = stmt
-						.executeQuery("select user_password from user1 where user_name='"
+						.executeQuery("select user_password from users where user_name='"
 								+ userName + "'");
 				if (rs.next()) {
 

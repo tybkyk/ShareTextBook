@@ -1,0 +1,37 @@
+﻿users用户表：
+uid 用户id（int）
+uname 用户名（varchar（20））
+upassword 密码（varchar（20））
+uauthority 权限（tinyint）
+uemail 邮箱（varchar(30)）
+ureg_date 注册时间 （date）
+
+ubook用户与书关系表：
+uid 用户id（int）
+bid 书id（int）
+collaborator 协作者（int）
+
+bookmark 书签表：
+uid 用户id（int）
+bid 书id（int）
+chapter 读到的章节（tinyint）
+lastread_date 上一次阅读时间（date）
+
+books 书表：
+bid 书id（int）
+bname 书名（text）
+bchapter 书章节（tinyint）
+bookcontent 书章节内容（mediumtext）
+bkauthority 书的权限（tinyint）
+upload_date 书上传时间（date）
+lastedit_date 书的上一次被编辑时间（date）
+
+userbk_c 用户评论表：
+comid 评论id （int）
+bid 被评论的书id（int）
+bchapter 被评论的章节（tinyint）
+uid 进行评论的用户id（int）
+ucomment 评论内容（text）
+ucomment_date 评论时间（date）
+
+

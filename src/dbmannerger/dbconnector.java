@@ -12,7 +12,7 @@ public class dbconnector {
     	
 	    String DBDRIVER = "com.mysql.jdbc.Driver" ;
 		   // 定义MySQL数据库的连接地址
-	    String DBURL = "jdbc:mysql://localhost:3306/test" ;
+	    String DBURL = "jdbc:mysql://localhost:3306/stbdb";
 		   // MySQL数据库的连接用户名(需要改变)
         String DBUSER = "root" ;
 		   // MySQL数据库的连接密码

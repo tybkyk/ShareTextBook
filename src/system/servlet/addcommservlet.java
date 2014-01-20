@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 //import user.information.*;
 import system.comment.*;
 import system.dao.*;
+import user.information.*;
 
 
 public class addcommservlet extends HttpServlet {
@@ -36,7 +37,7 @@ public class addcommservlet extends HttpServlet {
         
 		HttpSession session = request.getSession();
 		
-		//userinfo user = (userinfo)session.getAttribute("user");
+		userinfo user = (userinfo)session.getAttribute("user");
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		
@@ -45,7 +46,7 @@ public class addcommservlet extends HttpServlet {
 		
 		comt.setTitle(title);
 		comt.setContent(content);
-		//comt.setUserId(user.getUserId());
+		comt.setUserId(user.getUserId());
 		comt.setDate(new Date(System.currentTimeMillis()));
 		
 
@@ -62,8 +63,14 @@ public class addcommservlet extends HttpServlet {
 			}
 
 	}
+	
+	
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-		
+		doPost(request, response);
+	}
+
 		public void destroy(){
 			super.destroy();
 		}

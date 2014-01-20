@@ -5,13 +5,13 @@ import java.sql.Date;
 
 public class commenttable{
 
-	//private static final long serialVersionUID = 1L;
 	private int id;
 	private String userName;
 	private int userId;
 	private Date date;
 	private String content;
 	private String title;
+	private int commentDispaly;
 	
 	 
 	
@@ -56,6 +56,14 @@ public class commenttable{
 	public void setContent(String content) {
 		this.content = content;
 	}
+	
+	public int getcommentDispaly() {
+		return commentDispaly;
+	}
+	public void commentDispaly(int commentDispaly) {
+		this.commentDispaly = commentDispaly;
+	}
+	
 
 	
 	

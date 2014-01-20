@@ -10,23 +10,23 @@ import system.comment.*;
 
 public class systemdao {
 	
+	//插入用户留言
 	public boolean insertComment(commenttable comt){
 		dbconnector dbcon = new dbconnector();
         Connection con = null;
         Statement stmt = null;
 
-        String sql="insert into liuyan(c_userid,c_date,c_title,c_content) values(?,?,?,?)";
+        String sql="insert into liuyan(c_id,c_date,c_title,c_content) values(?,?,?,?)";
         
         try {
             con = dbcon.initDB();
             stmt = con.createStatement();
  
             PreparedStatement psmt=con.prepareStatement(sql);
-			psmt.setInt(1, comt.getUserId());
+			psmt.setInt(1, comt.getId());
 			psmt.setDate(2, comt.getDate());
 			psmt.setString(3, comt.getTitle());
 			psmt.setString(4, comt.getContent());
-			
 			psmt.executeUpdate();
 	
 			return true;
@@ -44,7 +44,7 @@ public class systemdao {
 	
 	
 	
-	
+	//查找
 	public ArrayList<commenttable> findAll() {
 		
 		dbconnector dbcon = new dbconnector();
@@ -64,12 +64,12 @@ public class systemdao {
 	         rs=psmt.executeQuery();
 	         while(rs.next()){
 	        	 commenttable comt=new commenttable();
-	        	 //comt.setId(rs.getInt(1));
+	        	 comt.setId(rs.getInt(1));
 	        	// comt.setUserId(rs.getInt(2));
 	        	 comt.setDate(rs.getDate(2));
 	        	 comt.setTitle(rs.getString(3));
 	        	 comt.setContent(rs.getString(4));
-					al.add(comt);
+				 al.add(comt);
 					//System.out.println(comt.getDate());
 				}
 			
@@ -78,7 +78,7 @@ public class systemdao {
 			e.printStackTrace();
 			
 		}finally {
-            dbcon.closeDB(stmt, con);
+            dbcon.closeDB(rs, stmt, con);
         }
 		return al;
 		}
@@ -86,10 +86,41 @@ public class systemdao {
 	
 	
 	
+	//删除留言
+	public boolean deleteComment(int CommentId) {
+        // 批量刪除记录方法
+		dbconnector dbcon = new dbconnector();
+        Connection con = null;
+        Statement stmt = null;
+
+        try {
+        	 con = dbcon.initDB();
+			 stmt = con.createStatement();
+            String sql = "delete liuyan  WHERE c_id =" + CommentId; //yujubianhua
+            stmt.executeUpdate(sql);
+   
+            return true;
+        } catch (SQLException e) {
+        	
+            e.printStackTrace();
+            return false;
+            
+        } finally {
+        	dbcon.closeDB(stmt, con);
+        }
+
+    }
 	
 	
 	
-}
+  }
+	
+	
+	
+	
+
+	
+
 	
 	
 	

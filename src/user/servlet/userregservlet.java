@@ -1,11 +1,8 @@
 package user.servlet;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.io.*;
 
 import user.information.*;
 import user.dao.*;
@@ -27,7 +24,6 @@ public class userregservlet extends HttpServlet {
         // 设置编码格式为 UTF-8
         String userName = request.getParameter("userName");
         String userPassword = request.getParameter("userPassword");
-        String userEmail = request.getParameter("userEmail");
         // 前台得到 用户输入数据
       
 
@@ -36,7 +32,6 @@ public class userregservlet extends HttpServlet {
         user.setUserName(userName);
         user.setUserPassword(userPassword);
         user.setUserAurtority(0);
-        user.setUserEmail(userEmail);
 
         // 将前台得到的数据存入ＶＯ
         userdao userDao = new userdao();
@@ -51,5 +46,5 @@ public class userregservlet extends HttpServlet {
 	public void destroy(){
 		super.destroy();
 	}
-
+	
 }

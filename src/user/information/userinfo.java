@@ -1,7 +1,7 @@
 package user.information;
 
 public class userinfo {
-    //private int userId;
+    private int userId;
     // 用户Id
     private String userName ;
     // 用户姓名
@@ -11,14 +11,14 @@ public class userinfo {
     // 用户状态
     private String userEmail;
     //用户邮箱
-    /*
+
     public int getUserId(){
     	return userId;
     }
     public void setUserId(int userId){
     	this.userId = userId;
     }
-    */
+
     
     public String getUserName(){
     	return userName;

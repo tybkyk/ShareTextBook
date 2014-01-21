@@ -19,17 +19,15 @@ public class userdao {
 			// cast是个函数 所以不能用''包括
 
 			String sql = "INSERT INTO users (uid,uname,upassword,uauthority,uemail,ureg_date)VALUES ("
-					+"cast(concat(2,right(UUID_SHORT(),8)) as signed)"+",'"
+					+ "cast(concat(2,right(UUID_SHORT(),8)) as signed)"
+					+ ",'"
 					+ user.getUserName()
 					+ "','"
 					+ user.getUserPassword()
-					+ "','" 
+					+ "','"
 					+ user.getUserAurtority()
 					+ "','"
-					+user.getUserEmail()
-					+"',"
-					+"sysdate()"
-					+")";
+					+ user.getUserEmail() + "'," + "sysdate()" + ")";
 			stmt.executeUpdate(sql);
 
 		} catch (SQLException e) {
@@ -39,7 +37,31 @@ public class userdao {
 			dbcon.closeDB(stmt, con);
 		}
 	}
-
+	public int checkuser_exists(String userName){
+		dbconnector dbcon = new dbconnector();
+		Connection con = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		int flag = 0;
+		try {
+			con = dbcon.initDB();
+			stmt = con.createStatement();
+			String sql = "SELECT uname FROM users where uname='" + userName
+					+ "'";
+			rs = stmt.executeQuery(sql);
+			if(rs.next()){
+				flag=1;
+			}
+			else
+				flag =2;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			dbcon.closeDB(rs,stmt, con);
+			userName=null;
+		}
+		return flag;
+	}
 	public int check(String userName, String userPassword) {
 		// 用户登录验证
 		dbconnector dbcon = new dbconnector();

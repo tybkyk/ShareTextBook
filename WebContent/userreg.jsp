@@ -10,7 +10,7 @@
 </head>
 
 <script type="text/javascript">
-    
+    var flag=0;
     function checkinput()
     {
         var user=document.registForm.userName.value;
@@ -39,12 +39,17 @@
         if(pwd.length>20){
         alert("密码长度大于20");
         return false;
-        }       
+        } 
+        if(flag==1)
+        {
+        alert("用户名已经存在");
+        return false;
+        }
     }
     
 	function validate(field) {
-		if ((field.value).length != 0){
-			if((field.value).length>5){
+		if ((field.value).length!= 0){
+			if((field.value).length>5&&(field.value).length<20){
 			//创建Ajax核心对象XMLHttpRequest
 			var xmlHttp=new XMLHttpRequest();
 			var url = "user_validate.jsp?userName="+field.value+"&time="+new Date().getTime();
@@ -52,19 +57,19 @@
 			xmlHttp.open("GET", url, true);
 			//将设置信息发送到Ajax引擎
 			xmlHttp.send();
-			
 			//将方法地址复制给onreadystatechange属性,会自动重复执行，直到4,200
-			xmlHttp.onreadystatechange=function callback() {  
+			xmlHttp.onreadystatechange=function(){  
 			    //alert(xmlHttp.readyState); 取消注释这句话你就会懂你上面那句话的意思
 			    //Ajax引擎状态为成功  
 			    if (xmlHttp.readyState == 4) {  
 			        //HTTP协议状态为成功  
 			        if (xmlHttp.status == 200) {  
-			            if (xmlHttp.responseText != "") {  
+			            if (xmlHttp.responseText==1) {  
 			                //alert(xmlHttp.responseText);  
-			                document.getElementById("spanalert").innerHTML = "<font color='red'>" + xmlHttp.responseText + "</font>";  
-			            }else {  
-			                document.getElementById("spanalert").innerHTML = ""; //这句就留着，暂时无用
+			                document.getElementById("spanalert").innerHTML = "<font color='red'>" +field.value+ " 已经存在" + "</font>";//存在该用户
+			                flag=1;
+			            }else{  
+			                document.getElementById("spanalert").innerHTML = "<font color='red'>" +field.value+ " 可以使用" + "</font>";//不存在
 			            }  
 			        }else {  
 			            alert("请求失败，错误码=" + xmlHttp.status);  

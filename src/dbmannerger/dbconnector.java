@@ -19,8 +19,6 @@ public class dbconnector {
 		String DBPASSWORD = "12345678";
 
 		Connection con = null;
-		Statement stmt = null;
-		ResultSet rs = null;
 
 		// 创建一个Connection句柄
 		try {

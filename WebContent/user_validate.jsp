@@ -5,8 +5,8 @@
 	pageEncoding="UTF-8"%>
 <%
 	String userName = request.getParameter("userName");
-	userName=new String(userName.getBytes("iso-8859-1"),"utf-8");
-	int result=0; 
+	userName = new String(userName.getBytes("iso-8859-1"), "utf-8");
+	int result = 0;
 	/*dbconnector dbcon = new dbconnector();
 	Connection con = null;
 	Statement stmt = null;
@@ -30,11 +30,9 @@
 		userName=null;
 	}
 	把这段代码移主要是想把模块功能独立了*/
-	userdao userDao=new userdao();
-	result=userDao.checkuser_exists(userName);
-	if(result==1){
-		out.println(userName + " 已经存在");
+	userdao userDao = new userdao();
+	result = userDao.checkuser_exists(userName);
+	if (result == 1) {
+		out.println("1");
 	}
-	else if(result==2)
-		out.println(userName + " 可以使用");
 %>

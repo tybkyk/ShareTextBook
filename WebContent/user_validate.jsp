@@ -2,9 +2,10 @@
 <%@page import="dbmannerger.dbconnector"%>
 <%@page import="java.sql.*;"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%
 	String userName = request.getParameter("userName");
+	userName=new String(userName.getBytes("iso-8859-1"),"utf-8");
 	int result=0; 
 	/*dbconnector dbcon = new dbconnector();
 	Connection con = null;
@@ -27,7 +28,8 @@
 	} finally {
 		dbcon.closeDB(rs,stmt, con);
 		userName=null;
-	}把这段代码移主要是想把模块功能独立了*/
+	}
+	把这段代码移主要是想把模块功能独立了*/
 	userdao userDao=new userdao();
 	result=userDao.checkuser_exists(userName);
 	if(result==1){

@@ -12,6 +12,7 @@
     function checkinput()
     {
         var user=document.registForm.userName.value;
+        var pwd=document.registForm.password.value;
         if(user.length==0)
         {
         alert("没有输入用户名！");
@@ -30,9 +31,6 @@
         return false;
         }
         
-        
-        
-        var pwd=document.registForm.password.value;
         
         if(pwd.length==0)
         {
@@ -67,25 +65,26 @@
 		<h2>
 			用户注册
 		</h2>
-		
-			用户名：
-			<input type="text" id="userName" value="" name="userName" size="36"
-				maxLength="36" onblur="checkun()"/>
-		
-		
+			用户名:
+			<input type="text" id="userName" value="" name="userName" 
+				size="38" maxLength="22" />
+
 		<br />
-		
 		<br />
-		
 			密    码：
 			<input type="password" id="password" value="" name="userPassword"
-				size="38" maxLength="22" onblur="checkpwd()"/>				
-		
+				size="38" maxLength="22"/>				
+
 		<br />
-		<h2></h2>
-		    <input type="Submit" name="submit"  style="width: 210px" value="登录"/>
-			
-		</div>
+		<br />
+			邮    箱：
+			<input type="text" id="email" value="" name="userEmail"
+				size="38" maxLength="22"/>
+							
+		<br />
+		<br />
+		    <input type="Submit" name="submit"  style="width: 210px" value="注册" oncilck="checkinput()"/>		
+	</div>
 
 </form>
 

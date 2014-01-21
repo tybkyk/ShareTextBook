@@ -24,6 +24,7 @@ public class userregservlet extends HttpServlet {
         // 设置编码格式为 UTF-8
         String userName = request.getParameter("userName");
         String userPassword = request.getParameter("userPassword");
+        String userEmail = request.getParameter("userEmail");
         // 前台得到 用户输入数据
       
 
@@ -31,7 +32,8 @@ public class userregservlet extends HttpServlet {
         // 实例化一个user对象
         user.setUserName(userName);
         user.setUserPassword(userPassword);
-        user.setUserAurtority(0);
+        user.setUserAurtority(1);//设定1为用户权限
+        user.setUserEmail(userEmail);
 
         // 将前台得到的数据存入ＶＯ
         userdao userDao = new userdao();
@@ -41,6 +43,7 @@ public class userregservlet extends HttpServlet {
         request.getRequestDispatcher("/userlogin.jsp").forward(request,
                 response);
         // 转到登录页面
+        user=null;
     	}
 	
 	public void destroy(){

@@ -44,6 +44,7 @@ public class userregservlet extends HttpServlet {
                 response);
         // 转到登录页面
         user=null;
+        userDao=null;
     	}
 	
 	public void destroy(){

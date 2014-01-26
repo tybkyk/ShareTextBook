@@ -40,7 +40,7 @@
         alert("密码长度大于20");
         return false;
         } 
-        if(flag==1)
+        if(flag==1)//用于判定用户名是否重复
         {
         alert("用户名已经存在");
         return false;

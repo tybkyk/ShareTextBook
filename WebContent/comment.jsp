@@ -48,6 +48,8 @@
 			<h2></h2>
 			<input type="Submit" name="submit" style="width: 210px" value="提交" />
 			<input type="reset" name="reset" style="width: 210px" value="重置" />
+			
+			
 		</div>
 
 	</form>

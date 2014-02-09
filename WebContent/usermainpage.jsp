@@ -30,12 +30,33 @@ catch(IndexOutOfBoundsException e)
 
 %>
 <head>
+<style type="text/css">
+div#container{width:960px}
+div#header {background-color:#99bbbb;}
+div#menu {background-color:#dddddd; height:500px; width:200px; float:left;}
+div#content {background-color:#EEEEEE; height:500px; width:760px; float:left;}
+div#footer {background-color:#99bbbb; clear:both; text-align:center;}
+h1 {margin-bottom:0;}
+ul {margin:0;}
+li {list-style:none;}
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><%=name %>'s MainPage</title>
 </head>
 
 <body>
-<%=name %>
+<div id="container">
+<div id="header">
+<h1>User Main Page</h1>
+</div>
+<div id="menu">
+<ul>
+<li>aaaaa</li>
+<li>bbbbb</li>
+<li>ccccc</li>
+</ul>
+</div>
+<div id="content">
 <table border="1" cellpadding="10">
 
 <%
@@ -55,7 +76,8 @@ for(int i=0;i<bk.size();++i){
 <td><a href="readbook.jsp?bid=<%=rli.getBookId() %>&chapter=<%=rli.getChapter() %>">点我继续阅读</a></td>
 </tr>
 <% }%>
-
 </table>
+</div>
+</div>
 </body>
 </html>

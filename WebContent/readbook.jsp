@@ -58,7 +58,7 @@ if(GoPage!=null)
 //查询最大页数
  int id=3;//session中获得（书名）
  int CountPage = 0;
-     ResultSet rs = GetRs("select * from book where bookid=" + id);
+     ResultSet rs = GetRs("select * from books where bid=" + id);
      
      while(rs.next()) 
   	{
@@ -95,7 +95,7 @@ function GoPageText(flag)
   <table width="100%" border="1" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
   
   <%
-     rs = GetRs("select * from book where chapter="+chapter+" and bookid='"+id+"'" );
+     rs = GetRs("select * from books where bchapter="+chapter+" and bid='"+id+"'" );
      //int CurrentPage = 0;
      
      while(rs.next()) 
@@ -177,6 +177,16 @@ function GoPageText(flag)
 </table>
   </body>
   </form>
+  
+  
+<!-- 测试PDF生成，中文有待处理 -->
+   <form id="form2"  action = "topdfservlet" method = "post" >
+    <td>
+ 	<input type="submit" name="pdf" value="PDF" />
+ </td>
+    </form>
+  
+  
   
 
 </html>

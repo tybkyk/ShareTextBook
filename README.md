@@ -26,3 +26,7 @@ ShareTextBook by yk and xyf
 1.15    Finish user book-list and add book which in database to book-list(also call it bookmarks)(it is rough)
 
 1.21    Modify user login and register 
+
+2.6     Finish book-reading fuction
+
+2.8     Finish convertPDFservlet, but cannot handle Chinese characters

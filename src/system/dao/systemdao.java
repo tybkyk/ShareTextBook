@@ -1,8 +1,15 @@
 package system.dao;
 
 
+import java.awt.Insets;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.StringReader;
 import java.sql.*;
 import java.util.ArrayList;
+
+import org.zefer.pd4ml.PD4Constants;
+import org.zefer.pd4ml.PD4ML;
 
 import dbmannerger.dbconnector;
 //import user.information.*;
@@ -110,6 +117,22 @@ public class systemdao {
         }
 
     }
+	
+	
+	
+	//转换PDF(中文问题后续处理)
+	public void generatePDF_1(File outputPDFFile, StringReader strReader) throws Exception {  
+        FileOutputStream fos = new FileOutputStream(outputPDFFile);  
+        PD4ML pd4ml = new PD4ML();  
+        pd4ml.setPageInsets(new Insets(20, 10, 10, 10));  
+        pd4ml.setHtmlWidth(950);  
+        pd4ml.setPageSize(pd4ml.changePageOrientation(PD4Constants.A4));  
+        pd4ml.useTTF("java:fonts", true);  
+        pd4ml.setDefaultTTFs("KaiTi_GB2312", "Arial", "Courier New");  
+        pd4ml.enableDebugInfo();  
+        pd4ml.render(strReader, fos);  
+    }  
+	
 	
 	
 	

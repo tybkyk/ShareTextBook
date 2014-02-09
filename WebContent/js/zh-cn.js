@@ -41,7 +41,6 @@ XHEDITOR.setLang({
     'Preview': '预览',
     'Print': '打印 (Ctrl+P)',
     'Fullscreen': '全屏编辑 (Esc)',
-    'About': '关于 xhEditor',
 
     'dialogOk': '确定',
     'dialogCancel': '取消',
@@ -192,5 +191,5 @@ XHEDITOR.setLang({
         'apiError': '{$0} 上传接口发生错误！\r\n\r\n返回的错误内容为: \r\n\r\n{$1}'
     },
 
-    'aboutXheditor': 'xhEditor是基于jQuery开发的跨平台轻量可视化XHTML编辑器，基于<a href="http://www.gnu.org/licenses/lgpl.html" target="_blank">LGPL</a>开源协议发布。'
+    
 });

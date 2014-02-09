@@ -37,8 +37,8 @@ public class userdao {
 			dbcon.closeDB(stmt, con);
 		}
 	}
-	
-	public int checkuser_exists(String userName){
+
+	public int checkuser_exists(String userName) {
 		dbconnector dbcon = new dbconnector();
 		Connection con = null;
 		Statement stmt = null;
@@ -50,20 +50,19 @@ public class userdao {
 			String sql = "SELECT uname FROM users where uname='" + userName
 					+ "'";
 			rs = stmt.executeQuery(sql);
-			if(rs.next()){
-				flag=1;//1为已经存在这个用户
-			}
-			else
-				flag =2;//2为不存在这个用户
+			if (rs.next()) {
+				flag = 1;// 1为已经存在这个用户
+			} else
+				flag = 2;// 2为不存在这个用户
 		} catch (SQLException e) {
 			System.out.println("数据库选择异常");
 			e.printStackTrace();
 		} finally {
-			dbcon.closeDB(rs,stmt, con);
+			dbcon.closeDB(rs, stmt, con);
 		}
 		return flag;
 	}
-	
+
 	public int check(String userName, String userPassword) {
 		// 用户登录验证
 		dbconnector dbcon = new dbconnector();
@@ -78,10 +77,10 @@ public class userdao {
 		try {
 
 			if (userName.equals(null)) {
-				info = 0; // yonghumingkong
+				info = 0; // username null
 
 			} else if (userPassword.equals(null)) {
-				info = 1; // mimakong
+				info = 1; // userpassword null
 			} else {
 
 				con = dbcon.initDB();
@@ -95,12 +94,12 @@ public class userdao {
 					String dbPasswd = rs.getString("upassword");
 
 					if (dbPasswd.equals(userPassword)) {
-						info = 2; // zhengque
+						info = 2; // userpassword is right
 					} else {
-						info = 3; // mimayouwu
+						info = 3; // userpassword is wrong
 					}
 				} else {
-					info = 4; // yonghubucunzai
+					info = 4; // no such user
 				}
 
 			}

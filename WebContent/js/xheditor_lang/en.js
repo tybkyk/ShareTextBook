@@ -41,7 +41,6 @@ XHEDITOR.setLang({
     'Preview': 'Preview',
     'Print': 'Print (Ctrl+P)',
     'Fullscreen': 'Toggle fullscreen (Esc)',
-    'About': 'About xhEditor',
 
     'dialogOk': 'Ok',
     'dialogCancel': 'Cancel',
@@ -192,5 +191,4 @@ XHEDITOR.setLang({
         'apiError': '{$0} upload interface error!\r\n\r\nreturn error:\r\n\r\n{$1}'
     },
 
-    'aboutXheditor': 'xhEditor is a platform independent WYSWYG XHTML editor based by jQuery,released as Open Source under <a href="http://www.gnu.org/licenses/lgpl.html" target="_blank">LGPL</a>.'
 });

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import dbmannerger.dbconnector;
 //import user.information.*;
-import book.information.*;
+import book.information.bookinfo;;
 
 
 public class bookdao{
@@ -20,7 +20,7 @@ public class bookdao{
 		try {
 			con = dbcon.initDB();
             stmt = con.createStatement();
-			String sql = "select * from book where id=?";   //更改
+			String sql = "select * from books where id=?";   //更改
 			PreparedStatement psmt=con.prepareStatement(sql);
 			 
 			psmt.setString(1, id);
@@ -59,7 +59,7 @@ public class bookdao{
 		try {
 			con = dbcon.initDB();
 			stmt = con.createStatement();
-			String sql = "select * from book";  //更改
+			String sql = "select * from books";  //更改
 			PreparedStatement psmt=con.prepareStatement(sql);
 			 
 			rs = psmt.executeQuery();

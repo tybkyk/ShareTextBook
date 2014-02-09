@@ -4,9 +4,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	String userName = request.getParameter("userName");
-	userName = new String(userName.getBytes("iso-8859-1"), "utf-8");
+	String userName = null;
 	int result = 0;
+	if (request.getParameter("userName") != null) {
+		userName = request.getParameter("userName");
+		userName = new String(userName.getBytes("iso-8859-1"), "utf-8");
+	} else
+		userName = null;
+
 	/*dbconnector dbcon = new dbconnector();
 	Connection con = null;
 	Statement stmt = null;
@@ -35,4 +40,6 @@
 	if (result == 1) {
 		out.println("1");
 	}
+	else
+		out.println("don't watch");
 %>

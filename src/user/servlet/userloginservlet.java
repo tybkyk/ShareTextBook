@@ -30,10 +30,9 @@ public class userloginservlet extends HttpServlet {
         userdao userDao = new userdao();
         int info = userDao.check(userName, userPassword);
         // 调用方法判断用户是否存在
-      
-       if(info == 0){
+       if(info == 2){
         	HttpSession session = request.getSession(true);
-			request.getSession().setMaxInactiveInterval(30*60);		// 设置session失效时间（timeout），单位为秒
+			request.getSession().setMaxInactiveInterval(30*24*60*60);		// 设置session失效时间（timeout），单位为秒
 			request.getSession().setAttribute("name", userName);		// 用户名和密码正确，保存登录信息(获得session与jsp网页稍有不同)
 			
 			response.sendRedirect("userselectbook.jsp");

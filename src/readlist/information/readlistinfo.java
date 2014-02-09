@@ -1,5 +1,7 @@
 package readlist.information;
 
+import java.sql.Date;
+
 import book.information.*;
 import user.information.*;
 
@@ -12,13 +14,12 @@ public class readlistinfo {
     private String bookName ;
     // 书名
     private int chapter;
-    // 章节号
-    
+    // 章节号    
     private int userId;
     // 用户Id
     private String userName ;
     // 用户姓名
-	
+	private Date date;
 
 	
 	 public int getBookId(){

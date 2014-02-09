@@ -14,6 +14,7 @@ collaborator 协作者（int）
 bookmark 书签表：
 uid 用户id（int）
 bid 书id（int）
+bname 书名（text）
 chapter 读到的章节（tinyint）
 lastread_date 上一次阅读时间（date）
 
@@ -33,5 +34,9 @@ bchapter 被评论的章节（tinyint）
 uid 进行评论的用户id（int）
 ucomment 评论内容（text）
 ucomment_date 评论时间（date）
+
+session:
+uid:uid
+uname:用户姓名
 
 

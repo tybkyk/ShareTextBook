@@ -34,8 +34,7 @@ public class userloginservlet extends HttpServlet {
         	HttpSession session = request.getSession(true);
 			request.getSession().setMaxInactiveInterval(30*24*60*60);		// 设置session失效时间（timeout），单位为秒
 			request.getSession().setAttribute("name", userName);		// 用户名和密码正确，保存登录信息(获得session与jsp网页稍有不同)
-			
-			response.sendRedirect("userselectbook.jsp");
+			response.sendRedirect("userselectbook.jsp");//跳转地址变化
         }
         else if(info == 1){
         	HttpSession session = request.getSession(true);

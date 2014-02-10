@@ -31,7 +31,6 @@ public class useraddbookservlet extends HttpServlet {
 		//1.获取要买的书
 		String sid=request.getParameter("id");
 		bookdao bdao = new bookdao();
-		
 		bookinfo book =bdao.findbook(sid);
 		readlistdao rdao = new readlistdao();
 		
@@ -39,11 +38,13 @@ public class useraddbookservlet extends HttpServlet {
 		
 		userinfo user = (userinfo)session.getAttribute("user");
 		
+		response.sendRedirect("userselectbook.jsp");
 
-
+		
+		
 		if(rdao.addbook(book, user)){
 			
-	    	  ArrayList<readlistinfo> al=rdao.findAll();
+	    	   ArrayList<readlistinfo> al=rdao.findAll();
 				session.setAttribute("al", al);
 	    	    response.sendRedirect("mainpage.jsp");
 			}

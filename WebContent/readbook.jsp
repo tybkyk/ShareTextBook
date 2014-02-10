@@ -4,6 +4,12 @@
 <%@page import= "java.sql.*; " %> 
     
 <%@ page session="true"%>
+<%
+ String path = request.getContextPath();
+ String basePath = request.getScheme() + "://"
+   + request.getServerName() + ":" + request.getServerPort()
+   + path + "/";
+%>
 
 
   <%!
@@ -36,6 +42,7 @@ int MAX_PAGE_NUM;
 //每页的开始页
 int chapter=1;
 //从请求中获取分页变量的值
+
 String chapter1=request.getParameter("chapter");
 //接受从go中传来的页面数
 String GoPage=request.getParameter("GoPage");
@@ -56,9 +63,10 @@ if(GoPage!=null)
 
 
 //查询最大页数
- int id=3;//session中获得（书名）
+int id = Integer.parseInt(request.getParameter("id").trim()) ;
+   
  int CountPage = 0;
-     ResultSet rs = GetRs("select * from books where bid=" + id);
+     ResultSet rs = GetRs("select * from book where bookid=" + id);
      
      while(rs.next()) 
   	{
@@ -69,18 +77,21 @@ if(GoPage!=null)
      //System.out.print(MAX_PAGE_NUM);
 
  %> 
+ 
+ 
+ 
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-        
+    <base href="<%=basePath%>">  
     <title>read</title>
 
 <script language="javascript">
 //下拉列表框实现翻页
 function GoPageSelect(flag)
 {
-	window.location.href="readbook.jsp?GoPage="+form1.SelectPage.value+"";
+	window.location.href="readbook.jsp?GoPage="+form1.textPage.value+"";
 }
 //输入相应页数时候点击按钮进行翻页
 function GoPageText(flag)
@@ -90,12 +101,13 @@ function GoPageText(flag)
 </script>
   </head>
   
+  
   <body>
   <form id="form1">
   <table width="100%" border="1" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
   
   <%
-     rs = GetRs("select * from books where bchapter="+chapter+" and bid='"+id+"'" );
+     rs = GetRs("select * from book where chapter="+chapter+" and bookid='"+id+"'" );
      //int CurrentPage = 0;
      
      while(rs.next()) 
@@ -121,12 +133,12 @@ function GoPageText(flag)
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor=> 
  <tr>
  <td>
- 	<a href="readbook.jsp?chapter=1">首页</a>
+ 	<a href="readbook.jsp?id=<%=id%>&chapter=1">首页</a>
  </td>
  <td>
  	<% if(pageNo>1)
  	{%>
-    <a href="readbook.jsp?chapter=<%=(chapter-1) %>">上一页</a>
+    <a href="readbook.jsp?id=<%=id%>&chapter=<%=(chapter-1) %>">上一页</a>
     <%}
     else
     { %>
@@ -136,7 +148,7 @@ function GoPageText(flag)
  <td>
  	<% if(pageNo<MAX_PAGE_NUM)
  	{%>
-    <a href="readbook.jsp?chapter=<%=(chapter+1) %>">下一页</a>
+    <a href="readbook.jsp?id=<%=id%>&chapter=<%=(chapter+1) %>">下一页</a>
      <%}
     else
     { %>
@@ -144,7 +156,7 @@ function GoPageText(flag)
    <% } %>
  </td>
  <td>
-    <a href="readbook.jsp?chapter=<%=MAX_PAGE_NUM %>">末页</a>
+    <a href="readbook.jsp?id=<%=id%>&chapter=<%=MAX_PAGE_NUM %>">末页</a>
  </td>
  <td>
  	第<%=pageNo %>/<%=MAX_PAGE_NUM %>页
@@ -178,16 +190,12 @@ function GoPageText(flag)
   </body>
   </form>
   
-  
-<!-- 测试PDF生成，中文有待处理 -->
-   <form id="form2"  action = "topdfservlet" method = "post" >
+    <form id="form2"  action = "topdfservlet" method = "post" >
     <td>
  	<input type="submit" name="pdf" value="PDF" />
  </td>
     </form>
   
   
-  
 
 </html>
-

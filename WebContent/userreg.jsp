@@ -56,8 +56,7 @@
 			//设置请求方式为GET，设置请求的URL，设置为异步提交,我觉得这句话才是核心
 			xmlHttp.open("GET", url, true);
 			//将设置信息发送到Ajax引擎
-			xmlHttp.send();
-			//将方法地址复制给onreadystatechange属性,会自动重复执行，直到4,200
+			
 			xmlHttp.onreadystatechange=function(){  
 			    //alert(xmlHttp.readyState); 取消注释这句话你就会懂你上面那句话的意思
 			    //Ajax引擎状态为成功  
@@ -76,6 +75,8 @@
 			        }  
 			    }  
 			};
+			xmlHttp.send();
+			//将方法地址复制给onreadystatechange属性,会自动重复执行，直到4,200
 		} 
 			else
 				document.getElementById("spanalert").innerHTML = "<font color='red'>" +"你好像输错了"+"</font>";

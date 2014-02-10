@@ -63,10 +63,10 @@ if(GoPage!=null)
 
 
 //查询最大页数
-int id = Integer.parseInt(request.getParameter("id").trim()) ;
+String id = request.getParameter("bid") ;
    
  int CountPage = 0;
-     ResultSet rs = GetRs("select * from book where bookid=" + id);
+     ResultSet rs = GetRs("select * from books where bid=" + id);
      
      while(rs.next()) 
   	{
@@ -94,9 +94,11 @@ function GoPageSelect(flag)
 	window.location.href="readbook.jsp?GoPage="+form1.textPage.value+"";
 }
 //输入相应页数时候点击按钮进行翻页
-function GoPageText(flag)
+function GoPageText(id)
 {
-	window.location.href="readbook.jsp?GoPage="+form1.textPage.value+"";
+	var chapter=document.getElementById("textPage").value;
+	window.location.href="readbook.jsp?chapter="+chapter+"&bid="+id;
+;
 }
 </script>
   </head>
@@ -107,7 +109,7 @@ function GoPageText(flag)
   <table width="100%" border="1" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
   
   <%
-     rs = GetRs("select * from book where chapter="+chapter+" and bookid='"+id+"'" );
+     rs = GetRs("select * from books where bchapter="+chapter+" and bid='"+id+"'" );
      //int CurrentPage = 0;
      
      while(rs.next()) 
@@ -178,11 +180,11 @@ function GoPageText(flag)
 	 </select>
  </td>
  <td>
- <input type="text" name="textPage" value="<%=pageNo%>"> 
+ <input type="text" id="textPage" name="textPage" value="<%=pageNo%>"> 
  </td>
  
  <td>
- 	<input type="button" name="go" value="Go" onclick="GoPageText()"  />
+ 	<input type="button" name="go" value="Go" onclick="GoPageText(<%=id %>)"  />
  </td>
  
  </tr>

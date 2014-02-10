@@ -10,12 +10,12 @@
 
 <!--加session：uid uname -->
 <script type="text/javascript">
+
     
-    function checkinput()
-    {
-        var user=document.loginForm.userName.value;
-        var pwd=document.loginForm.password.value;
-        if(user.length==0)
+    function validate(){
+    	var uname=document.getElementById("userName").value;
+    	var upwd=document.getElementById("password").value;
+    	if(uname.length==0)
         {
         alert("没有输入用户名！");
         return false;
@@ -25,11 +25,7 @@
        	 alert("没有输入密码！");
        	 return false;
         }
-    }
-    
-    function validate(userName,password){
-    	var uname=userName.value;
-    	var upwd=password.value;
+        document.formName.submit();
     	if(userName!=null&&password!=null){
     		var xmlHttp=new XMLHttpRequest();
     	}
@@ -42,7 +38,7 @@
 <body>
 
 
-	<form name="loginForm" action="userloginservlet" method="post" onsubmit="return checkinput()">
+	<form name="loginForm" action="userloginservlet" method="post" onsubmit="return validate()">
 
 		<div align="center">
 			<h2>用户登录</h2>
@@ -55,7 +51,7 @@
 				size="38" maxLength="16" /> 
 			<br /><br />
 
-			<input type="Submit" name="submit" style="width: 210px" value="登录" onclick=validate(userName,password) />
+			<input type="button" name="submit" style="width: 210px" value="登录" onclick=validate() />
 
 		</div>
 

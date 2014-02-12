@@ -12,7 +12,6 @@
 	response.setDateHeader("Expires", -1);
 	response.setHeader("Cache-Control", "No-store");//这四行用处是让后退的时候不读缓存而去刷新页面从而可以检测是否登录了
 	String action = null;
-	request.getParameter("123123");
 	if (request.getParameter("action") != null) {
 		action = request.getParameter("action");//获取action参数，进行相应操作
 		if (action.equals("logout")) {

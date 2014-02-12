@@ -37,13 +37,15 @@ public class userloginservlet extends HttpServlet {
 			// 调用方法判断用户是否存在
 			if (info[1].equals("2")) {
 				out.write("1");//1为成功
+				out.flush();
 				out.close();
 				HttpSession session = request.getSession(true);
-				session.setMaxInactiveInterval(30 * 24 * 60 * 60); // 设置session失效时间（timeout），单位为秒
+				session.setMaxInactiveInterval(7*24*60*60); // 设置session失效时间（timeout），单位为秒
 				session.setAttribute("uname", userName); // 用户名和密码正确，保存登录信息(获得session与jsp网页稍有不同)
 				session.setAttribute("uid", uid);
 			} else if (info[1] == "3" || info[1] == "4") {
 				out.write("2");//2为不成功
+				out.flush();
 				out.close();
 			} else {
 				System.out.println("草麻痹这个错一定不会出来的 出来就是电脑吃屎了");//这段应该不会发生

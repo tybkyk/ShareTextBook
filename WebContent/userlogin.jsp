@@ -20,25 +20,43 @@
         alert("没有输入用户名！");
         return false;
         } 
-        if(pwd.length==0)
+        if(upwd.length==0)
         {
        	 alert("没有输入密码！");
        	 return false;
         }
-        document.formName.submit();
-    	if(userName!=null&&password!=null){
+        
+        //document.loginForm.submit();
+    	if(uname.length!=0&&upwd.length!=0){
     		var xmlHttp=new XMLHttpRequest();
+    		var url = "userloginservlet?userName="+uname+"&userPassword="+upwd+"&time="+new Date().getTime(); 
+    		xmlHttp.open("GET", url, true);    		
+    		xmlHttp.onreadystatechange=function(){  
+    	    	if (xmlHttp.readyState == 4) { 
+    		        if (xmlHttp.status == 200) {  
+    		            if (xmlHttp.responseText=="1") {  
+    		            	document.getElementById("spanalert").innerHTML = "<font color='red'>" +"登陆成功...跳转中..."+"</font>";
+    		                //document.getElementById("loginForm").submit();
+    		                window.location="usermainpage.jsp";
+    		            }else if(xmlHttp.responseText=="2"){  
+    		                document.getElementById("spanalert").innerHTML = "<font color='red'>" +"用户名或密码错误"+"</font>";
+    		            }  
+    		        }else {  
+    		            alert("请求失败，错误码=" + xmlHttp.status);  
+    		        }
+    		    }
+    		};
+    		xmlHttp.send(null);
     	}
     }
    
-
 </script>
 
 
 <body>
 
 
-	<form name="loginForm" action="userloginservlet" method="post" onsubmit="return validate()">
+	<form name="loginForm" id="loginForm" action="userloginservlet" method="post" onsubmit="return validate()">
 
 		<div align="center">
 			<h2>用户登录</h2>
@@ -49,9 +67,12 @@
 				
 			密 码:	<input type="password" id="password" value="" name="userPassword"
 				size="38" maxLength="16" /> 
-			<br /><br />
+			<br />
+			
+			<span id="spanalert" value="" name="spanalert"></span>
+			<br />
 
-			<input type="button" name="submit" style="width: 210px" value="登录" onclick=validate() />
+			<input type="button" name="button" style="width: 210px" value="登录" onclick="validate()" />
 
 		</div>
 

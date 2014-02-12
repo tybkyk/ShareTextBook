@@ -63,56 +63,49 @@ public class userdao {
 		return flag;
 	}
 
-	public int check(String userName, String userPassword) {
+	public String[] check(String userName, String userPassword) {
 		// 用户登录验证
 		dbconnector dbcon = new dbconnector();
 		Connection con = null;
 		Statement stmt = null;
 		ResultSet rs = null;
+		String [] arrStrings=new String[2];
 		// userinfo user = null;
 
-		int info = 0;
+		String info = null;
 
 		// may be have some logic problem
 		try {
-
-			if (userName.equals(null)) {
-				info = 0; // username null
-
-			} else if (userPassword.equals(null)) {
-				info = 1; // userpassword null
-			} else {
-
 				con = dbcon.initDB();
 				stmt = con.createStatement();
 
-				rs = stmt
-						.executeQuery("select upassword from users where uname='"
-								+ userName + "'");
+				rs = stmt.executeQuery("select uid,upassword from users where uname='"+ userName + "'");
 				if (rs.next()) {
-
+					
+					String uid=rs.getString("uid");
 					String dbPasswd = rs.getString("upassword");
-
 					if (dbPasswd.equals(userPassword)) {
-						info = 2; // userpassword is right
+						info = "2"; // upassword is right
+						arrStrings[0]=uid;
+						arrStrings[1]=info;
 					} else {
-						info = 3; // userpassword is wrong
+						info = "3"; // upassword is wrong
+						arrStrings[1]=info;
 					}
 				} else {
-					info = 4; // no such user
+					info = "4"; // no such user
+					arrStrings[1]=info;
 				}
 
-			}
-
 		} catch (SQLException e) {
-			System.out.println("数据库选择异常");
+			System.out.println("check pwd 数据库选择异常");
 			e.printStackTrace();
 		} finally {
 			// 执行完关闭数据库
 			dbcon.closeDB(rs, stmt, con);
 		}
 
-		return info;
+		return arrStrings;
 	}
 
 }

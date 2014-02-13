@@ -15,7 +15,7 @@
 	} catch (Exception e) {
 	}*/
 	try {
-		uname = (String) session.getAttribute("uname");
+		uname = (String) session.getAttribute("uname");//获取uname
 	} catch (Exception e) {
 	}
 	if (uname == null)

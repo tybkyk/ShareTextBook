@@ -10,9 +10,9 @@
 	//验证是否登录，如果参数是logout则删除session
 	response.setHeader("Pragma", "No-cache");
 	response.setDateHeader("Expires", -1);
-	response.setHeader("Cache-Control", "No-store");//这四行用处是让后退的时候不读缓存而去刷新页面从而可以检测是否登录了
+	response.setHeader("Cache-Control", "No-store");//这三行用处是让后退的时候不读缓存而去刷新页面从而可以检测是否登录了
 	String action = null;
-	String jumppath=null;
+	String jumppath="1";
 	if (request.getParameter("action") != null) {
 		action = request.getParameter("action");//获取action参数，进行相应操作
 		if (action.equals("logout")) {
@@ -62,10 +62,10 @@
 							document.getElementById("spanalert").innerHTML = "<font color='red'>"
 									+ "登陆成功...跳转中..." + "</font>";
 							//document.getElementById("loginForm").submit();
-							if(document.getElementById("hiddenkey").value!=null)
-								window.location.href =document.getElementById("hiddenkey").value;
+							if(document.getElementById("hiddenkey").value==1)									
+								window.location.href = "/ShareTextBook/usermainpage.jsp";
 							else
-								window.location.href = "/ShareTextBook/userlogin.jsp";
+								window.location.href =document.getElementById("hiddenkey").value;
 						} else if (xmlHttp.responseText == "2") {
 							document.getElementById("spanalert").innerHTML = "<font color='red'>"
 									+ "用户名或密码错误" + "</font>";
@@ -81,9 +81,9 @@
 </script>
 <body>
 	<%
-		String uname = null;
+		String uname = null;//检测登录
 		try {
-			uname = (String) session.getAttribute("uname");
+			uname = (String) session.getAttribute("uname");//尝试获取uname
 		} catch (Exception e) {
 		}
 		if (uname != null) {

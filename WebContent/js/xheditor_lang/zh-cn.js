@@ -41,7 +41,6 @@ XHEDITOR.setLang({
     'Preview': '预览',
     'Print': '打印 (Ctrl+P)',
     'Fullscreen': '全屏编辑 (Esc)',
-    'About': '关于 xhEditor',
 
     'dialogOk': '确定',
     'dialogCancel': '取消',

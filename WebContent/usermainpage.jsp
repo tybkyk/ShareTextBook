@@ -8,6 +8,7 @@
 <%
 	String uid=null;
 	String uname = null;
+	String path = request.getRequestURI();//当前url
 	uid = "1";//假定用户uid为1  实际把下面注释取消
 	/*try {
 		uid = (String) session.getAttribute("uid");
@@ -18,7 +19,7 @@
 	} catch (Exception e) {
 	}
 	if (uname == null)
-		response.sendRedirect("userlogin.jsp");//这句话的用处如果通过url进来而不是用户的话就直接跳转到登陆界面
+		response.sendRedirect("userlogin.jsp?jumppath="+path);//这句话的用处如果通过url进来而不是用户的话就直接跳转到登陆界面
 %>
 <%
 	readlistdao bookmark = new readlistdao();
@@ -117,7 +118,7 @@ li {
 					<td><%=rli.getBookName()%></td>
 					<td><%=rli.getChapter()%></td>
 					<td><a
-						href="readbook.jsp?bid=<%=rli.getBookId()%>&chapter=<%=rli.getChapter()%>">点我继续阅读</a></td>
+						href="NewFile.jsp?bid=<%=rli.getBookId()%>&chapter=<%=rli.getChapter()%>">点我继续阅读</a></td>
 				</tr>
 				<%
 					}

@@ -39,7 +39,7 @@ public class userloginservlet extends HttpServlet {
 			// 调用方法判断用户是否存在
 			if (info[1].equals("2")) {
 				HttpSession session = request.getSession(true);				
-				session.setMaxInactiveInterval(120); // 设置session失效时间（timeout），单位为秒
+				session.setMaxInactiveInterval(60); // 设置session失效时间（timeout），单位为秒
 				session.setAttribute("uname", userName); // 用户名和密码正确，保存登录信息(获得session与jsp网页稍有不同)
 				session.setAttribute("uid", uid);
 				Cookie cookie = new Cookie("JSESSIONID", session.getId());

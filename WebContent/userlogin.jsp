@@ -12,6 +12,7 @@
 	response.setDateHeader("Expires", -1);
 	response.setHeader("Cache-Control", "No-store");//这四行用处是让后退的时候不读缓存而去刷新页面从而可以检测是否登录了
 	String action = null;
+	String jumppath=null;
 	if (request.getParameter("action") != null) {
 		action = request.getParameter("action");//获取action参数，进行相应操作
 		if (action.equals("logout")) {
@@ -19,8 +20,10 @@
 			response.sendRedirect("userlogin.jsp");
 		}
 	}
+	if (request.getParameter("jumppath") != null) {
+		jumppath = request.getParameter("jumppath");//获取jumppath参数，跳转回相应url
+	}
 	
-
 %>
 </head>
 
@@ -59,7 +62,10 @@
 							document.getElementById("spanalert").innerHTML = "<font color='red'>"
 									+ "登陆成功...跳转中..." + "</font>";
 							//document.getElementById("loginForm").submit();
-							top.location = "usermainpage.jsp";
+							if(document.getElementById("hiddenkey").value!=null)
+								window.location.href =document.getElementById("hiddenkey").value;
+							else
+								window.location.href = "/ShareTextBook/userlogin.jsp";
 						} else if (xmlHttp.responseText == "2") {
 							document.getElementById("spanalert").innerHTML = "<font color='red'>"
 									+ "用户名或密码错误" + "</font>";
@@ -112,7 +118,7 @@
 				onclick="validate()" />
 
 		</div>
-
+	<input type="hidden" id="hiddenkey" value="<%=jumppath  %>">
 	<%
 		}
 	%>

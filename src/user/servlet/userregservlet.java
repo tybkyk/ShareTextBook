@@ -41,7 +41,7 @@ public class userregservlet extends HttpServlet {
 		if (result == 2) {
 			userDao.insertUser(user);
 			// 调用增加用户方法
-			response.sendRedirect("userlogin.jsp");
+			request.getRequestDispatcher("userlogin.jsp").forward(request, response);
 			// 转到登录页面
 		} else {
 			response.sendRedirect("userreg.jsp");

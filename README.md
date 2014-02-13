@@ -36,9 +36,9 @@ ShareTextBook by yk and xyf
 					 2，if you want to create a link to logout,please call:userlogin.jsp?action=logout
 					 3, estimate the parameter of session or url before you use them, do like this:
 						if (request.getParameter("xxx") != null) {
-							//than use them ,do what you wanna do.
+							//then use them ,do what you wanna do.
 						}
 						
 						***Attention!!!!!!!!!***session.getAttribute("xxx") needs to be included in the try {}catch(){}
 						***Because request.getParameter("xxx")(even xxx doesn't exist) will not cause any error 
-						but session.getAttribute("xxx") will!!
+						but session.getAttribute("xxx") will not!!

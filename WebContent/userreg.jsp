@@ -7,6 +7,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
 <title>User Register</title>
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
+<%
+response.setHeader("Pragma","No-Cache");
+    response.setHeader("Cache-Control","No-Cache");
+    response.setDateHeader("Expires", 0);
+    %>
 </head>
 
 <script type="text/javascript">
@@ -49,7 +57,7 @@
 	function validate() {
 		field = document.getElementById("userName");
 		if ((field.value).length != 0) {
-			if ((field.value).length > 5 && (field.value).length < 20) {
+			if ((field.value).length > 5 && (field.value).length < 21) {
 				//创建Ajax核心对象XMLHttpRequest
 				var xmlHttp = new XMLHttpRequest();
 				var url = "user_validate.jsp?userName=" + field.value
@@ -83,7 +91,7 @@
 				//将方法地址复制给onreadystatechange属性,会自动重复执行，直到4,200
 			} else
 				document.getElementById("spanalert").innerHTML = "<font color='red'>"
-						+ "你好像输错了" + "</font>";
+						+ "你好像输得不符合要求" + "</font>";
 		} else {
 			document.getElementById("spanalert").innerHTML = "<font color='red'>"
 					+ "你好像什么都没输入" + "</font>";
@@ -97,12 +105,19 @@
 		<div align="center">
 			<h1>用户注册</h1>
 			用户名: <input type="text" id="userName" value="" name="userName"
-				size="38" maxLength="22" onblur="validate()" /> <br /> <br /> 密 码：
-			<input type="password" id="password" value="" name="userPassword"
-				size="38" maxLength="22" onblur="validate()" /> <br /> <br /> 邮 箱：
-			<input type="text" id="email" value="" name="userEmail" size="38"
-				maxLength="22" /> <br /> <span id="spanalert"></span> <br /> <input
-				type="Submit" name="submit" style="width: 210px" value="注册" />
+				size="38" maxLength="22" onblur="validate()" /> 
+				<br /> 
+				<br /> 
+			密 码：<input type="password" id="password" value="" name="userPassword"
+				size="38" maxLength="22" onblur="validate()" /> 
+				<br /> 
+				<br /> 
+			邮 箱：<input type="text" id="email" value="" name="userEmail" size="38"
+				maxLength="22" /> 
+				<br /> 
+				<span id="spanalert"></span> 
+				<br /> 
+				<input type="Submit" name="submit" style="width: 210px" value="注册" />
 		</div>
 	</form>
 </body>

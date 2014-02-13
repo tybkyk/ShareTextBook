@@ -12,7 +12,7 @@
 	response.setDateHeader("Expires", -1);
 	response.setHeader("Cache-Control", "No-store");//这三行用处是让后退的时候不读缓存而去刷新页面从而可以检测是否登录了
 	String action = null;
-	String jumppath="1";
+	String jumppath=null;
 	if (request.getParameter("action") != null) {
 		action = request.getParameter("action");//获取action参数，进行相应操作
 		if (action.equals("logout")) {
@@ -62,7 +62,7 @@
 							document.getElementById("spanalert").innerHTML = "<font color='red'>"
 									+ "登陆成功...跳转中..." + "</font>";
 							//document.getElementById("loginForm").submit();
-							if(document.getElementById("hiddenkey").value==1)									
+							if(document.getElementById("hiddenkey").value=="null")									
 								window.location.href = "/ShareTextBook/usermainpage.jsp";
 							else
 								window.location.href =document.getElementById("hiddenkey").value;
@@ -90,7 +90,7 @@
 			//String uname=(String)session.getAttribute("uname");
 	%>
 	<div align="center">
-		<h1><%=uname%>你已经登陆了</h1>
+		<h1><%=uname%>你已经登陆了(这段是留着代码)</h1>
 		<br />
 		<h3>
 			<a href="userlogin.jsp?action=logout">退出登录点这里</a>

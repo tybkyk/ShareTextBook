@@ -2,8 +2,10 @@ package user.servlet;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
+
 import java.io.*;
 
+import system.dao.systemdao;
 import user.dao.*;
 
 public class userloginservlet extends HttpServlet {
@@ -24,7 +26,7 @@ public class userloginservlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		String userName = request.getParameter("userName");
 		String userPassword = request.getParameter("userPassword");
-		if (userName == "" || userPassword == "")
+		if (userName == "" || userPassword == ""||userName == null|| userPassword == null)
 			response.sendRedirect("userreg.jsp");// 在commit以后2次判断用户名密码，若有错误直接跳转,这句话防止被恶意修改js登录
 		//登录页面不是用表单写的，所以不能通过servlet跳转
 
@@ -36,13 +38,16 @@ public class userloginservlet extends HttpServlet {
 			PrintWriter out = response.getWriter();
 			// 调用方法判断用户是否存在
 			if (info[1].equals("2")) {
-				out.write("1");//1为成功
-				out.flush();
-				out.close();
-				HttpSession session = request.getSession(true);
-				session.setMaxInactiveInterval(7*24*60*60); // 设置session失效时间（timeout），单位为秒
+				HttpSession session = request.getSession(true);				
+				session.setMaxInactiveInterval(120); // 设置session失效时间（timeout），单位为秒
 				session.setAttribute("uname", userName); // 用户名和密码正确，保存登录信息(获得session与jsp网页稍有不同)
 				session.setAttribute("uid", uid);
+				Cookie cookie = new Cookie("JSESSIONID", session.getId());
+		        cookie.setMaxAge(session.getMaxInactiveInterval());
+		        response.addCookie(cookie);
+				out.write("1");//1为成功
+				out.flush();
+				out.close();				
 			} else if (info[1] == "3" || info[1] == "4") {
 				out.write("2");//2为不成功
 				out.flush();

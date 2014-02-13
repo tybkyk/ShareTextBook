@@ -31,7 +31,7 @@ public class userdao {
 			stmt.executeUpdate(sql);
 
 		} catch (SQLException e) {
-			System.out.println("数据库插入异常");
+			System.out.println("userdao数据库插入异常");
 			e.printStackTrace();
 		} finally {
 			dbcon.closeDB(stmt, con);

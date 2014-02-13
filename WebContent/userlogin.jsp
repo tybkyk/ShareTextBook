@@ -19,10 +19,12 @@
 			response.sendRedirect("userlogin.jsp");
 		}
 	}
+	
+
 %>
 </head>
 
-<!--加session：uid uname -->
+<!--加session：uid uname ps:session已经在servlet中添加 -->
 <script type="text/javascript">
 	function validate() {
 		var uname = document.getElementById("userName").value;
@@ -38,7 +40,15 @@
 
 		//document.loginForm.submit();
 		if (uname.length != 0 && upwd.length != 0) {
-			var xmlHttp = new XMLHttpRequest();
+			var xmlHttp;
+			if (window.XMLHttpRequest)
+			  {// code for IE7+, Firefox, Chrome, Opera, Safari
+			  xmlHttp=new XMLHttpRequest();
+			  }
+			else
+			  {// code for IE6, IE5
+			  xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+			  }
 			var url = "userloginservlet?userName=" + uname + "&userPassword="
 					+ upwd + "&time=" + new Date().getTime();
 			xmlHttp.open("GET", url, true);
@@ -74,8 +84,7 @@
 			//String uname=(String)session.getAttribute("uname");
 	%>
 	<div align="center">
-		<h1><%=uname%>你已经登陆了
-		</h1>
+		<h1><%=uname%>你已经登陆了</h1>
 		<br />
 		<h3>
 			<a href="userlogin.jsp?action=logout">退出登录点这里</a>
@@ -84,23 +93,25 @@
 	<%
 		} else {
 	%>
-	<form name="loginForm" id="loginForm" action="userloginservlet"
-		method="post" onsubmit="return validate()">
-
 		<div align="center">
 			<h2>用户登录</h2>
 
-			用户名： <input type="text" id="userName" value="" name="userName"
-				size="36" maxLength="36" /> <br />
-			<br /> 密 码: <input type="password" id="password" value=""
-				name="userPassword" size="38" maxLength="16" /> <br /> <span
-				id="spanalert" value="" name="spanalert"></span> <br /> <input
-				type="button" name="button" style="width: 210px" value="登录"
+				用户名: 
+				<input type="text" id="userName" value="" name="userName" 
+				size="38" maxLength="22"/>
+				<br />
+				<br /> 
+				密	码：
+				<input type="password" id="password" value="" name="userPassword"
+				size="38" maxLength="22"/>
+
+				<br /> 
+				<span id="spanalert"></span> 
+				<br /> 
+				<input type="button" name="button" style="width: 210px" value="登录"
 				onclick="validate()" />
 
 		</div>
-
-	</form>
 
 	<%
 		}

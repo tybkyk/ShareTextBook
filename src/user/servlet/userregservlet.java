@@ -2,6 +2,7 @@ package user.servlet;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
+
 import java.io.*;
 
 import user.information.*;
@@ -38,11 +39,12 @@ public class userregservlet extends HttpServlet {
 		userdao userDao = new userdao();
 		// 实例化一个数据库操作对象
 		int result = userDao.checkuser_exists(userName);
-		if (result == 2) {
+		if (result == 2) {// 不存在
 			userDao.insertUser(user);
 			// 调用增加用户方法
-			request.getRequestDispatcher("userlogin.jsp").forward(request, response);
+			//request.getRequestDispatcher("userlogin.jsp").forward(request,response);
 			// 转到登录页面
+			response.sendRedirect("userlogin.jsp");
 		} else {
 			response.sendRedirect("userreg.jsp");
 		}
@@ -50,6 +52,10 @@ public class userregservlet extends HttpServlet {
 		userDao = null;
 	}
 
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doPost(request, response);
+	}
 	public void destroy() {
 		super.destroy();
 	}

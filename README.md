@@ -42,3 +42,4 @@ ShareTextBook by yk and xyf
 						***Attention!!!!!!!!!***session.getAttribute("xxx") needs to be included in the try {}catch(){}
 						***Because request.getParameter("xxx")(even xxx doesn't exist) will not cause any error 
 						but session.getAttribute("xxx") will not!!
+2.15	Rewrite readbook.jsp by yk

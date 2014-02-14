@@ -42,7 +42,7 @@ public class useraddbookservlet extends HttpServlet {
 
 		
 		
-		if(rdao.addbook(book, user)){
+		if(rdao.addbookmark(book, user)){
 			
 	    	   ArrayList<readlistinfo> al=rdao.findAll();
 				session.setAttribute("al", al);

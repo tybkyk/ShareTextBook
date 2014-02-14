@@ -5,16 +5,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
 <title>User Register</title>
 <META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
 <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
 <META HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
 <%
 response.setHeader("Pragma","No-Cache");
-    response.setHeader("Cache-Control","No-Cache");
-    response.setDateHeader("Expires", 0);
-    %>
+response.setHeader("Cache-Control","No-Cache");
+response.setDateHeader("Expires", 0);
+%>
 </head>
 
 <script type="text/javascript">

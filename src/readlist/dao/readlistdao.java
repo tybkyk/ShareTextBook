@@ -18,7 +18,7 @@ import dbmannerger.dbconnector;
 //用于代表购买的商品（书）。包括书的数量。（购物项，购物车的一行）
 public class readlistdao {
 	//要注意 这个中间如果章节为0则代表为收藏，如果是其他数字则代表是书签
-	public boolean addbook(bookinfo book, userinfo user){
+	public boolean addbookmark(bookinfo book, userinfo user){
 		
 		dbconnector dbcon = new dbconnector();
         Connection con = null;

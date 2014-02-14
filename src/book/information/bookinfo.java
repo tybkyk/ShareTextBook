@@ -9,8 +9,15 @@ public class bookinfo {
     // 章节号
     private String content;
     // 章节内容
+    private int maxchapter;
     
     
+    public int getmaxchapter(){
+    	return maxchapter;
+    }
+    public void setmaxchapter(int chapter){
+    	this.maxchapter=chapter;
+    }
     
     public int getBookId(){
     	return bookId;

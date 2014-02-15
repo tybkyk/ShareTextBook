@@ -131,8 +131,8 @@ h1 {
 			<%}else{%>
 				<a>下一章</a>
 			 	<%} %>
-			 	<%if(chapter_int<=maxchapter) {//如果当前章节小于最大章节 则显示出跳转%>
-			 	<input type="text" id="goChapter" name="goChapter"  size="3" value="<%=chapter %>"/>
+			 	<%if(chapter_int<=maxchapter) {//如果当前章节小于最大章节 则显示跳转%>
+	     	 	<input type="text" id="goChapter" name="goChapter"  size="3" value="<%=chapter %>"/>
 			 	<input type="button" name="go"  value="Go" onclick="goChapter(<%=bid %>)"  />
 			 	<input type="hidden" id="maxchapter" name="maxchapter" value="<%=maxchapter %>" />
 			 	<input type="hidden" id="currentchapter" name="currentchapter" value="<%=chapter%>>" />

@@ -10,12 +10,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 <%
 	String uname = null;
 	String path = request.getRequestURI();
 	String bid = null;//获取书签页传来的值
 	String chapter = "1";//默认值为1，只有bid无chapter时候跳到第一章
+	
 	try {
 		uname = (String) session.getAttribute("uname");
 	} catch (Exception e) {
@@ -47,18 +47,21 @@
 		bookdao bd = new bookdao();
 		bookinfo bi = new bookinfo();
 		bi = bd.findbook(bid, chapter);
-		if (bi != null) {
+		maxchapter = bi.getmaxchapter();//单独获取最大章节
+		if (bi.getBookName() != null) {//获取书名 书内容 
 			bookName = bi.getBookName();
-			content = bi.getContent();
-			maxchapter = bi.getmaxchapter();
+			content = bi.getContent();			
 		}
 		//else
 			//response.sendRedirect("usermainpage.jsp");//无这本书
 	}
 
 %>
+<title>书名：<%=bookName%>第<%=chapter%>章</title>
+
 <%=path%>
-<%="最大页数"+maxchapter%>
+<%="最大章节:"+maxchapter%>
+<%="bookname:"+bookName%>
 
 <style type="text/css">
 div#container {
@@ -107,13 +110,13 @@ h1 {
 		
 		<div id="footer">
 		<%if(bid!=null){
-			int chapter_int=2;
+			int chapter_int=2;//即使下面转换不成功 还是可以回到第一页
 			try{
 				chapter_int = Integer.parseInt(chapter);
 			}catch(NumberFormatException e){
 				e.printStackTrace();
 			}
-			if(chapter_int==1)
+			if(chapter_int<=1)
 			{
 			%>
 				<a>上一章</a>
@@ -128,10 +131,12 @@ h1 {
 			<%}else{%>
 				<a>下一章</a>
 			 	<%} %>
+			 	<%if(chapter_int<=maxchapter) {//如果当前章节小于最大章节 则显示出跳转%>
 			 	<input type="text" id="goChapter" name="goChapter"  size="3" value="<%=chapter %>"/>
-			 	<input type="button" name="go" value="Go" onclick="goChapter(<%=bid %>)"  />
+			 	<input type="button" name="go"  value="Go" onclick="goChapter(<%=bid %>)"  />
 			 	<input type="hidden" id="maxchapter" name="maxchapter" value="<%=maxchapter %>" />
 			 	<input type="hidden" id="currentchapter" name="currentchapter" value="<%=chapter%>>" />
+			 	<%} %>
 		<%} %>
 		
 		

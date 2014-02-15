@@ -33,19 +33,20 @@ public class bookdao{
 			rs = psmt.executeQuery();
 			rs2 = stmt.executeQuery(sql2);
 			//Book b = null;
+			while(rs2.next())
+			{
+				++count;//获取最大章节
+			}
+			bi.setmaxchapter(count);
 			if(rs.next()){
 				bi.setBookId(rs.getInt(1));
 				bi.setBookName(rs.getString(2));
 				bi.setChapter(rs.getInt(3));
 				bi.setContent(rs.getString(4));
-				while(rs2.next())
-				{
-					++count;//获取最大章节
-				}
-				bi.setmaxchapter(count);
+				
 				return bi;	
 			}else {
-				return null;
+				return bi;
 			}
 	
 		} catch (Exception e) {

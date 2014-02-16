@@ -23,7 +23,7 @@ public class systemdao {
         Connection con = null;
         Statement stmt = null;
 
-        String sql="insert into liuyan(c_id,c_date,c_title,c_content) values(?,?,?,?)";
+        String sql="insert into userbk_c(comid,bid,bchapter,uid,ucomment,ucomment_date) values(?,?,?,?,?,?)";
         
         try {
             con = dbcon.initDB();
@@ -31,9 +31,12 @@ public class systemdao {
  
             PreparedStatement psmt=con.prepareStatement(sql);
 			psmt.setInt(1, comt.getId());
-			psmt.setDate(2, comt.getDate());
-			psmt.setString(3, comt.getTitle());
-			psmt.setString(4, comt.getContent());
+			psmt.setInt(2, comt.getbId());
+			psmt.setInt(3, comt.getChapter());
+			psmt.setInt(4, comt.getUserId());
+			//psmt.setString(3, comt.getTitle());
+			psmt.setString(5, comt.getContent());
+			psmt.setDate(6, comt.getDate());
 			psmt.executeUpdate();
 	
 			return true;
@@ -71,11 +74,14 @@ public class systemdao {
 	         rs=psmt.executeQuery();
 	         while(rs.next()){
 	        	 commenttable comt=new commenttable();
+	       
 	        	 comt.setId(rs.getInt(1));
-	        	// comt.setUserId(rs.getInt(2));
-	        	 comt.setDate(rs.getDate(2));
-	        	 comt.setTitle(rs.getString(3));
-	        	 comt.setContent(rs.getString(4));
+	        	 comt.setbId(rs.getInt(2));
+	        	 comt.setChapter(rs.getInt(3));
+	        	 comt.setUserId(rs.getInt(4));
+	        	 comt.setContent(rs.getString(5));
+	        	 comt.setDate(rs.getDate(6));
+
 				 al.add(comt);
 					//System.out.println(comt.getDate());
 				}
@@ -103,7 +109,7 @@ public class systemdao {
         try {
         	 con = dbcon.initDB();
 			 stmt = con.createStatement();
-            String sql = "delete liuyan  WHERE c_id =" + CommentId; //yujubianhua
+            String sql = "delete from userbk_c WHERE comid=" + CommentId; 
             stmt.executeUpdate(sql);
    
             return true;

@@ -82,6 +82,7 @@
 	}
 </script>
 <body>
+
 <%=jumppath%>
 	<%
 		String uname = null;//检测登录

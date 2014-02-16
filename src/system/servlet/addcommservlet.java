@@ -38,21 +38,29 @@ public class addcommservlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		userinfo user = (userinfo)session.getAttribute("user");
-		String title = request.getParameter("title");
+		//String title = request.getParameter("title");
 		String content = request.getParameter("content");
+		
+		
 		
 		commenttable comt = new commenttable();
 		
+
+//有两个位，留言的id需要你帮我弄一下，书的id和章节号，怎么获得
 		
-		comt.setTitle(title);
-		comt.setContent(content);
-		comt.setUserId(user.getUserId());
+		// comt.setId();
+    	// comt.setbId();
+    	// comt.setChapter();
+ 		 comt.setUserId(user.getUserId());
+ 		 comt.setContent(content);		
 		comt.setDate(new Date(System.currentTimeMillis()));
 		
 
 		  systemdao systemDao = new systemdao();
+		  systemDao.insertComment(comt);
+		  
 
-	      
+	      /*
 	      if(systemDao.insertComment(comt)){
 	    	  ArrayList<commenttable> al=systemDao.findAll();
 				session.setAttribute("al", al);
@@ -61,6 +69,7 @@ public class addcommservlet extends HttpServlet {
 	      else{
 				response.sendRedirect("cuowu.jsp");
 			}
+			*/
 
 	}
 	

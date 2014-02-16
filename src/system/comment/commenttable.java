@@ -6,12 +6,14 @@ import java.sql.Date;
 public class commenttable{
 
 	private int id;
-	private String userName;
+	private int bid;
+	private int chapter;
+	//private String userName;
 	private int userId;
 	private Date date;
 	private String content;
-	private String title;
-	private int commentDispaly;
+	//private String title;
+	//private int commentDispaly;
 	
 	 
 	
@@ -22,13 +24,29 @@ public class commenttable{
 		this.id = id;
 	}
 	
+	public int getbId() {
+		return bid;
+	}
+	public void setbId(int bid) {
+		this.bid = bid;
+	}
+
+	public int getChapter() {
+		return chapter;
+	}
+	public void setChapter(int chapter) {
+		this.chapter = chapter;
+	}
+	
+	
+	/*
 	public String getuserName() {
 		return userName;
 	}
 	public void setuserName(String userName) {
 		this.userName = userName;
 	}
-	
+	*/
 	public int getUserId() {
 		return userId;
 	}
@@ -42,28 +60,28 @@ public class commenttable{
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
+	/*
 	public String getTitle() {
 		return title;
 	}
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
+	*/
 	public String getContent() {
 		return content;
 	}
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
+	/*
 	public int getcommentDispaly() {
 		return commentDispaly;
 	}
 	public void commentDispaly(int commentDispaly) {
 		this.commentDispaly = commentDispaly;
 	}
-	
+	*/
 
 	
 	

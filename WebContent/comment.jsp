@@ -15,6 +15,9 @@
 <textarea id="txt"  name="content" rows="5" cols="35"></textarea>
 <br/>
 
+				<span id="spanalert"></span> 
+				
+				<br /> 
 <input type="button" value="留言" style="width: 50px"  id="btn" />
  <input type="reset" name="reset"  style="width: 50px" value="重置"/>
 
@@ -62,9 +65,38 @@ oBtn.onclick=function(){
 		  xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
 		  }
 
-		var url = "addcommentservlet?content="+ oMessage;
+		var url = "addcommentservlet?content="+ oMessage.value;
 		xmlHttp.open("GET", url, true);
+		
+		
+		xmlHttp.onreadystatechange = function() {
+			if (xmlHttp.readyState == 4) {
+				if (xmlHttp.status == 200) {
+					if (xmlHttp.responseText == "1") {
+						document.getElementById("spanalert").innerHTML = "<font color='red'>"
+								+ "charuzhengque" + "</font>";
+						
+					} else if (xmlHttp.responseText == "2") {
+						document.getElementById("spanalert").innerHTML = "<font color='red'>"
+								+ "chauruyoucuowu" + "</font>";
+					}
+				} else {
+					alert("请求失败，错误码=" + xmlHttp.status);
+				}
+			}
+		};
+		
+		
+		
+		
+		
+		
+		
+		
 		xmlHttp.send(null);
+		
+		
+		
 		
 		
 	}

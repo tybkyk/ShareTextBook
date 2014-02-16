@@ -1,15 +1,18 @@
 package system.servlet;
  
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.ArrayList;
  
+
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 
 //import user.information.*;
 import system.comment.*;
@@ -57,9 +60,16 @@ public class addcommservlet extends HttpServlet {
 		
 
 		  systemdao systemDao = new systemdao();
-		  systemDao.insertComment(comt);
 		  
-
+		  PrintWriter out = response.getWriter();
+		  if(systemDao.insertComment(comt)){
+			  out.write("1");
+		  }
+		  else{
+			  out.write("2");
+		  }
+		  
+		  
 	      /*
 	      if(systemDao.insertComment(comt)){
 	    	  ArrayList<commenttable> al=systemDao.findAll();

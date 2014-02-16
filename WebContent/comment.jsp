@@ -65,8 +65,8 @@ oBtn.onclick=function(){
 		  xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
 		  }
 
-		var url = "addcommentservlet?content="+ oMessage.value;
-		xmlHttp.open("GET", url, true);
+		var url = "addcommservlet?content="+ oMessage.value;
+		xmlHttp.open("POST", url, true);
 		
 		
 		xmlHttp.onreadystatechange = function() {
@@ -85,20 +85,7 @@ oBtn.onclick=function(){
 				}
 			}
 		};
-		
-		
-		
-		
-		
-		
-		
-		
 		xmlHttp.send(null);
-		
-		
-		
-		
-		
 	}
 }
 	

@@ -22,23 +22,28 @@ public class systemdao {
 		dbconnector dbcon = new dbconnector();
         Connection con = null;
         Statement stmt = null;
+        
+       
+        
+        
+        
 
-        String sql="insert into userbk_c(comid,bid,bchapter,uid,ucomment,ucomment_date) values(?,?,?,?,?,?)";
+      //  String sql="insert into userbk_c(comid,bid,bchapter,uid,ucomment,ucomment_date) values(?,?,?,?,?,?)";
         
         try {
             con = dbcon.initDB();
             stmt = con.createStatement();
- 
-            PreparedStatement psmt=con.prepareStatement(sql);
-			psmt.setInt(1, comt.getId());
-			psmt.setInt(2, comt.getbId());
-			psmt.setInt(3, comt.getChapter());
-			psmt.setInt(4, comt.getUserId());
-			//psmt.setString(3, comt.getTitle());
-			psmt.setString(5, comt.getContent());
-			psmt.setDate(6, comt.getDate());
-			psmt.executeUpdate();
-	
+            String sql = "INSERT INTO userbk_c(comid,bid,bchapter,uid,ucomment,ucomment_date)VALUES ("
+    				+ "cast(concat(2,right(UUID_SHORT(),8)) as signed)"
+    				+ ",'"
+    				+ comt.getbId()
+    				+ "','"
+    				+  comt.getChapter()
+    				+ "','"
+    				+ comt.getUserId()
+    				+ "','"
+    				+comt.getContent() + "'," + "sysdate()" + ")";
+            stmt.executeUpdate(sql);
 			return true;
 
             

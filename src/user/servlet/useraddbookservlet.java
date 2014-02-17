@@ -31,7 +31,7 @@ public class useraddbookservlet extends HttpServlet {
 		//1.获取要买的书
 		String sid=request.getParameter("id");
 		bookdao bdao = new bookdao();
-		bookinfo book =bdao.findbook(sid);
+		bookinfo book =bdao.findbook(sid,"");  //需要修改！！
 		readlistdao rdao = new readlistdao();
 		
         HttpSession session = request.getSession();

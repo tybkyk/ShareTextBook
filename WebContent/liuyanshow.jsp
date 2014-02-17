@@ -35,7 +35,8 @@
 
 			<tr>
 				<td><%=comt.getDate().toString()%></td>
-				<td><%=comt.getTitle() %></td>
+				
+				
 				<td><%=comt.getContent() %></td>
 				<td><a href="deletecommservlet?CommentId=<%=comt.getId() %>">删除</a></td>
 				<td><a

@@ -31,9 +31,20 @@
 <script type="text/javascript">
 var oTxt=document.getElementById('txt');
 var oBtn=document.getElementById('btn');
-//var oTitle=document.getElementById('title');
 var oMessage=document.getElementById('message');
 var aLi=oMessage.getElementsByTagName('li');
+
+
+
+//敏感词过滤
+function filterText(sText) {
+    var reBadWords = /caonima/gi; //自行添加
+    return sText.replace(reBadWords, function (sMatch) {
+        return sMatch.replace(/./g, "*");
+    });            
+}
+
+
 
 oBtn.onclick=function(){
 	if(oTxt.value==""){
@@ -41,12 +52,9 @@ oBtn.onclick=function(){
 	}else{
 		var oLi=document.createElement('li');
 		var oP=document.createElement('p');
-		//var oT=document.createElement('t');
 		
-		oP.innerHTML=oTxt.value;
-		//oT.innerHTML=oTitle.value;
-		
-		//oLi.appendChild(oT);
+		oP.innerHTML=filterText(oTxt.value);
+
 		oLi.appendChild(oP);
 		
 		if(aLi.length>0){
@@ -65,7 +73,7 @@ oBtn.onclick=function(){
 		  xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
 		  }
 
-		var url = "addcommservlet?content="+ oMessage.value;
+		var url = "addcommservlet?content="+ filterText(oMessage.value);
 		xmlHttp.open("POST", url, true);
 		
 		

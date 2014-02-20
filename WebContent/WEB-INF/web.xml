@@ -5,7 +5,36 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	 
+ <servlet>
+   <servlet-name>CommentManage</servlet-name>
+   <jsp-file>/WEB-INF/AdminManagePage.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>CommentManage</servlet-name>
+   <url-pattern>/CommentManage</url-pattern>
+  </servlet-mapping>
  
+ 
+ <servlet>
+      <servlet-name>admincommentservlet</servlet-name>
+      <servlet-class>admin.servlet.admincommentservlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+      <servlet-name>admincommentservlet</servlet-name>
+      <url-pattern>/admincommentservlet</url-pattern>
+  </servlet-mapping>
+ 
+  <servlet>
+      <servlet-name>adminloginservlet</servlet-name>
+      <servlet-class>admin.servlet.adminloginservlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+      <servlet-name>adminloginservlet</servlet-name>
+      <url-pattern>/adminloginservlet</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
       <servlet-name>userregservlet</servlet-name>
       <servlet-class>user.servlet.userregservlet</servlet-class>

@@ -35,6 +35,12 @@ uid 进行评论的用户id（int）
 ucomment 评论内容（text）
 ucomment_date 评论时间（date）
 
+admin 管理员表
+adminname varchar(20) 管理员名 主键
+adminpassword varchar(20)  密码 非空
+adminauthority tinyint 权限 1为最高
+);
+
 session:
 uid:uid
 uname:用户姓名

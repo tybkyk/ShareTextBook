@@ -3,7 +3,6 @@ package user.dao;
 import java.sql.*;
 
 import dbmannerger.dbconnector;
-import system.dao.systemdao;
 import user.information.*;
 
 public class userdao {
@@ -51,7 +50,9 @@ public class userdao {
 					+ "'";
 			rs = stmt.executeQuery(sql);
 			if (rs.next()) {
-				flag = 1;// 1为已经存在这个用户
+				String uname=rs.getString("uname");
+				if(uname.equals(userName))
+					flag = 1;// 1为已经存在这个用户
 			} else
 				flag = 2;// 2为不存在这个用户
 		} catch (SQLException e) {

@@ -5,7 +5,6 @@ import javax.servlet.http.*;
 
 import java.io.*;
 
-import system.dao.systemdao;
 import user.dao.*;
 
 public class userloginservlet extends HttpServlet {

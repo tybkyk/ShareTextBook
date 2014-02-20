@@ -8,11 +8,11 @@ public class commenttable{
 	private int id;
 	private int bid;
 	private int chapter;
-	//private String userName;
+	private String userName;
 	private int userId;
 	private Date date;
 	private String content;
-	//private String title;
+	private String bname;
 	//private int commentDispaly;
 	
 	 
@@ -39,14 +39,14 @@ public class commenttable{
 	}
 	
 	
-	/*
+
 	public String getuserName() {
 		return userName;
 	}
 	public void setuserName(String userName) {
 		this.userName = userName;
 	}
-	*/
+
 	public int getUserId() {
 		return userId;
 	}
@@ -60,14 +60,14 @@ public class commenttable{
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	/*
-	public String getTitle() {
-		return title;
+	
+	public String getBname() {
+		return bname;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setBname(String bname) {
+		this.bname = bname;
 	}
-	*/
+	
 	public String getContent() {
 		return content;
 	}

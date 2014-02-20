@@ -42,9 +42,7 @@ public class addcommservlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		userinfo user = (userinfo)session.getAttribute("user");
-		//bookinfo book = (bookinfo)session.getAttribute("user");
 		
-		//String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		int bookid =   Integer.parseInt(request.getParameter("bid"));
 		int chapter =  Integer.parseInt(request.getParameter("chapter"));
@@ -53,14 +51,11 @@ public class addcommservlet extends HttpServlet {
 		commenttable comt = new commenttable();
 		
 
-//有两个位，留言的id需要你帮我弄一下，书的id和章节号，怎么获得
-		
-		// comt.setId();
     	 comt.setbId(bookid);
     	 comt.setChapter(chapter);
  		 comt.setUserId(user.getUserId());
  		 comt.setContent(content);		
-		comt.setDate(new Date(System.currentTimeMillis()));
+		 comt.setDate(new Date(System.currentTimeMillis()));
 		
 
 		  systemdao systemDao = new systemdao();

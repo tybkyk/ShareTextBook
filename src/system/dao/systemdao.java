@@ -22,11 +22,6 @@ public class systemdao {
 		dbconnector dbcon = new dbconnector();
         Connection con = null;
         Statement stmt = null;
-        
-       
-        
-        
-        
 
       //  String sql="insert into userbk_c(comid,bid,bchapter,uid,ucomment,ucomment_date) values(?,?,?,?,?,?)";
         
@@ -44,6 +39,8 @@ public class systemdao {
     				+ "','"
     				+comt.getContent() + "'," + "sysdate()" + ")";
             stmt.executeUpdate(sql);
+            
+            
 			return true;
 
             

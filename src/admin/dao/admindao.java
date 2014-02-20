@@ -163,7 +163,6 @@ public class admindao {
 			con = dbcon.initDB();
 			stmt = con.createStatement();
 
-			// cast是个函数 所以不能用''包括
 			String sql = "delete from userbk_c where comid='"+comid+"'";
 			stmt.executeUpdate(sql);
 			rs=stmt.executeQuery("select * from userbk_c where comid='"+comid+"'");
@@ -173,7 +172,7 @@ public class admindao {
 			System.out.println("comid数据库删除异常");
 			e.printStackTrace();
 		} finally {
-			dbcon.closeDB(stmt, con);
+			dbcon.closeDB(rs, stmt, con);
 		}
 		return flag;
 	}

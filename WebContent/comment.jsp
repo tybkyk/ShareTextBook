@@ -40,7 +40,7 @@ var aLi=oMessage.getElementsByTagName('li');
 function filterText(sText) {
     var reBadWords = /caonima/gi; //自行添加
     return sText.replace(reBadWords, function (sMatch) {
-        return sMatch.replace(/./g, "*");
+        return sMatch.replace(/./g, "");
     });            
 }
 

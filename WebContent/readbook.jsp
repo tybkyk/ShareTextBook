@@ -1,8 +1,8 @@
 <%@page import="javax.servlet.jsp.tagext.TryCatchFinally"%>
 <%@page import="book.information.bookinfo"%>
 <%@page import="book.dao.bookdao"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" 
+pageEncoding="UTF-8"%>
 <%@page import="dbmannerger.dbconnector"%>
 <%@page import="java.sql.*; "%>
 

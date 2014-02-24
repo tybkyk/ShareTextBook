@@ -18,7 +18,7 @@
 <%
 	String path = request.getRequestURI();
 	String bid = "1";//获取书签页传来的值
-	String chapter = "1";//默认值为1，只有bid无chapter时候跳到第一章
+	String chapter = "6";//默认值为1，只有bid无chapter时候跳到第一章
 	String bookName = null;
 	String content = null;
 	//int maxchapter = 1;

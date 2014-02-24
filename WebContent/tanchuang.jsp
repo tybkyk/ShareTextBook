@@ -49,8 +49,8 @@ body{font:12px/180% Arial, Helvetica, sans-serif, "新宋体";background:#E3E4E2
 .float-news{height:380px;left:0px;padding:10px 15px;width:300px;z-index:100;top:117px;_margin-top:117px;}
 .float-open{height:48px;left:-70px;padding:4px 4px 4px 6px;width:48px;z-index:99;top:206px;_margin-top:206px;}
 .float-news,.float-open{position:fixed;*zoom:1;_position:absolute;_top:expression(eval(document.documentElement.scrollTop));}
-.float-close{background: no-repeat left top;overflow:hidden;height:48px;opacity:.6;filter:alpha(opacity=60);position:absolute;right:9px;text-indent:100%;top:10px;white-space:nowrap;width:48px;}
-.open-btn{background: no-repeat left top;display:block;overflow:hidden;height:48px;opacity:.6;filter:alpha(opacity=60);text-indent:100%;white-space:nowrap;width:48px;}
+.float-close{background:url(images/nav-close.png) no-repeat left top;overflow:hidden;height:48px;opacity:.6;filter:alpha(opacity=60);position:absolute;right:9px;text-indent:100%;top:10px;white-space:nowrap;width:48px;}
+.open-btn{background:url(images/ml-open-demo.png) no-repeat left top;display:block;overflow:hidden;height:48px;opacity:.6;filter:alpha(opacity=60);text-indent:100%;white-space:nowrap;width:48px;}
 .float-close:hover,.open-btn:hover{opacity:1;filter:alpha(opacity=100);}
 .newslist h3{color:#333;border-bottom:4px solid #F2F2F2;font-size:26px;height:54px;line-height:54px;font-family:Microsoft Yahei,simsun,arial,sans-serif;}
 .newslist ul{margin-top:10px;}

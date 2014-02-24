@@ -42,7 +42,7 @@ pageEncoding="UTF-8"%>
 <%
 	String bookName = null;
 	String content = null;
-	int maxchapter = 1;
+	int maxchapter = 0;
 	if (bid != null && chapter != null) {
 		bookdao bd = new bookdao();
 		bookinfo bi = new bookinfo();
@@ -109,7 +109,7 @@ h1 {
 		</div>
 		
 		<div id="footer">
-		<%if(bid!=null){
+		<%if(maxchapter!=0){//若最大章节存在即书存在则显示导航栏
 			int chapter_int=2;//即使下面转换不成功 还是可以回到第一页
 			try{
 				chapter_int = Integer.parseInt(chapter);
@@ -124,7 +124,7 @@ h1 {
 				<a href="readbook.jsp?bid=<%=bid %>&chapter=<%=chapter_int-1%>">上一章</a>
 			 	<%} %>
 			<%
-			if(chapter_int<maxchapter)
+			if(chapter_int<maxchapter&&content!=null)
 			{
 			%>
 				<a href="readbook.jsp?bid=<%=bid %>&chapter=<%=chapter_int+1%>">下一章</a>

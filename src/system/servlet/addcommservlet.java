@@ -55,7 +55,6 @@ public class addcommservlet extends HttpServlet {
     	 comt.setChapter(chapter);
  		 comt.setUserId(user.getUserId());
  		 comt.setContent(content);		
-		 comt.setDate(new Date(System.currentTimeMillis()));
 		
 
 		  systemdao systemDao = new systemdao();

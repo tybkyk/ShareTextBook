@@ -2,13 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@page import="admin.dao.admindao"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.text.SimpleDateFormat" %>
 <%@page import="system.comment.commenttable"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Admin MainPage</title>
+<title>Administrator MainPage</title>
 <style type="text/css">
 div#container {
 	width: 960px
@@ -95,15 +96,11 @@ function deletecomment(comid){
 		uname = (String) request.getParameter("userName");
 	if (request.getParameter("bName") != null)
 		bname = (String) request.getParameter("bName");
-	System.out.println(uname);
-	System.out.println(bname);
 %>
-uname:<%=uname%>
-bname:<%=bname%>
 <%
 	if ((uname == null && bname == null)
 			|| (uname == "" && bname == "")) {
-		System.out.println("sadasd");
+		//do nothing
 	} else {
 		admindao admd = new admindao();
 		try {
@@ -125,8 +122,8 @@ bname:<%=bname%>
 		<div id="menu">
 			<ul>
 				<li>用户留言管理</li>
-				<li>bbbbb</li>
-				<li>ccccc</li>
+				<li><a href="UserManage">用户明细管理</a></li>
+				<li>文章修改意见管理</li>
 			</ul>
 		</div>
 		<div id="content">
@@ -153,10 +150,13 @@ bname:<%=bname%>
 					if (flag == 1) {
 						for (int i = 0; i < commenttables.size(); ++i) {
 							comtable = commenttables.get(i);
-							if (comtable.getBname() == null)
+							String time=null;
+							if (comtable.getBname() == null)//预处理
 								comtable.setBname(bname);
 							if (comtable.getuserName() == null)
 								comtable.setuserName(uname);
+							if(comtable.getDate()!=null)
+								time=comtable.getDate().substring(0,16);//转化时间格式到分钟
 							if (i == 0) {
 				%>
 				<tr>
@@ -174,13 +174,13 @@ bname:<%=bname%>
 					<td><%=comtable.getuserName()%></td>
 					<td><%=comtable.getBname()%></td>
 					<td><%=comtable.getChapter()%></td>
-					<td><%=comtable.getContent()%></td>
-					<td><%=comtable.getDate()%></td>
+					<td style="word-break:break-all"><%=comtable.getContent()%></td>
+					<td><%=time%></td>
 					<td><input type="button" id="delete" name="delete" size="5"
 						value="删除" onclick="deletecomment(<%=comtable.getId()%>)" /></td>
 				</tr>
 				<%
-					}
+				}
 					} else
 						out.print("无内容");
 				%>

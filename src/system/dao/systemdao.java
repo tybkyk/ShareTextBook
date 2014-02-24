@@ -82,7 +82,7 @@ public class systemdao {
 	        	 comt.setChapter(rs.getInt(3));
 	        	 comt.setUserId(rs.getInt(4));
 	        	 comt.setContent(rs.getString(5));
-	        	 comt.setDate(rs.getDate(6));
+	        	 comt.setDate(rs.getString(6));
 
 				 al.add(comt);
 					//System.out.println(comt.getDate());

@@ -14,7 +14,15 @@
    <url-pattern>/CommentManage</url-pattern>
   </servlet-mapping>
  
- 
+ <servlet>
+   <servlet-name>UserManage</servlet-name>
+   <jsp-file>/WEB-INF/Users_AdminManage.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>UserManage</servlet-name>
+   <url-pattern>/UserManage</url-pattern>
+  </servlet-mapping>
+
  <servlet>
       <servlet-name>admincommentservlet</servlet-name>
       <servlet-class>admin.servlet.admincommentservlet</servlet-class>

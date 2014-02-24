@@ -10,7 +10,7 @@ public class commenttable{
 	private int chapter;
 	private String userName;
 	private int userId;
-	private Date date;
+	private String date;
 	private String content;
 	private String bname;
 	//private int commentDispaly;
@@ -54,10 +54,10 @@ public class commenttable{
 		this.userId = userId;
 	}
 	
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	

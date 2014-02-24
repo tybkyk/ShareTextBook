@@ -73,7 +73,7 @@ public class admindao {
 					comt.setId(rs.getInt(1));
 					comt.setChapter(rs.getInt(2));
 					comt.setContent(rs.getString(3));
-					comt.setDate(rs.getDate(4));
+					comt.setDate(rs.getString(4));
 					commenttables.add(comt);
 					comt = null;
 				}
@@ -106,7 +106,7 @@ public class admindao {
 					comt.setBname(rs.getString(2));
 					comt.setChapter(rs.getInt(3));
 					comt.setContent(rs.getString(4));
-					comt.setDate(rs.getDate(5));
+					comt.setDate(rs.getString(5));
 					commenttables.add(comt);
 					comt = null;
 				}
@@ -136,7 +136,7 @@ public class admindao {
 					comt.setChapter(rs.getInt(2));
 					comt.setuserName(rs.getString(3));
 					comt.setContent(rs.getString(4));
-					comt.setDate(rs.getDate(5));
+					comt.setDate(rs.getString(5));
 					commenttables.add(comt);
 					comt = null;
 				}

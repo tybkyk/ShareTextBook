@@ -11,15 +11,18 @@
 <body>
 <form name="commentForm" method = "post" >
 <div>
-请留言：
+
 <textarea id="txt"  name="content" rows="5" cols="35"></textarea>
 <br/>
 
 				<span id="spanalert"></span> 
 				
 				<br /> 
+<input type="radio" name="choose" value="0" />写评论
+<input type="radio" name="choose" value="1" />提意见
+<br/>
 <input type="button" value="留言" style="width: 50px"  id="btn" />
- <input type="reset" name="reset"  style="width: 50px" value="重置"/>
+<input type="reset" name="reset"  style="width: 50px" value="重置"/>
 
 
 <ul id="message"></ul>
@@ -33,8 +36,7 @@ var oTxt=document.getElementById('txt');
 var oBtn=document.getElementById('btn');
 var oMessage=document.getElementById('message');
 var aLi=oMessage.getElementsByTagName('li');
-
-
+var Obj=document.getElementsByName("choose"); 
 
 //敏感词过滤
 function filterText(sText) {
@@ -47,21 +49,31 @@ function filterText(sText) {
 
 
 oBtn.onclick=function(){
+	
+for(var i=0;i<Obj.length;i++){if(Obj[i].checked){break}}; 
+	
 	if(oTxt.value==""){
 		alert("请输入留言内容");
-	}else{
-		var oLi=document.createElement('li');
-		var oP=document.createElement('p');
+	}
+	else if(i==Obj.length){
+		alert("请输入选项");
+	}
+	else{
+		//var oLi=document.createElement('li');
+		//var oP=document.createElement('p');
 		
-		oP.innerHTML=filterText(oTxt.value);
+		//oP.innerHTML=filterText(oTxt.value);
 
-		oLi.appendChild(oP);
-		
+		//oLi.appendChild(oP);
+		/*
 		if(aLi.length>0){
 			oMessage.insertBefore(oLi,oMessage.firstChild);
 		}else{
 			oMessage.appendChild(oLi);
 		}
+		*/
+		//alert(Obj[i].value); 
+		
 		
 		var xmlHttp;
 		if (window.XMLHttpRequest)
@@ -73,7 +85,7 @@ oBtn.onclick=function(){
 		  xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
 		  }
 
-		var url = "addcommservlet?content="+ filterText(oMessage.value);
+		var url = "addcommservlet?content="+ filterText(oMessage.value)+"choose="+Obj[i].value;
 		xmlHttp.open("POST", url, true);
 		
 		

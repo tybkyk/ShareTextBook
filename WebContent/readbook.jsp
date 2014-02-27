@@ -11,6 +11,7 @@ pageEncoding="UTF-8"%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="js/mathjax/MathJax.js?config=AM_HTMLorMML-full"></script>
 <%
 	String uname = null;
 	String path = request.getRequestURI();

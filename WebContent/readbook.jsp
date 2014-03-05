@@ -1,10 +1,10 @@
 <%@page import="javax.servlet.jsp.tagext.TryCatchFinally"%>
 <%@page import="book.information.bookinfo"%>
 <%@page import="book.dao.bookdao"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" 
-pageEncoding="UTF-8"%>
 <%@page import="dbmannerger.dbconnector"%>
 <%@page import="java.sql.*; "%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" 
+pageEncoding="UTF-8"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -45,6 +45,12 @@ pageEncoding="UTF-8"%>
 	String bookName = null;
 	String content = null;
 	int maxchapter = 0;
+	int chapter_int=2;//请求的章节号的int类型。即使下面转换不成功 还是可以回到第一页
+	try{
+		chapter_int = Integer.parseInt(chapter);
+	}catch(NumberFormatException e){
+		e.printStackTrace();
+	}
 	if (bid != null && chapter != null) {
 		bookdao bd = new bookdao();
 		bookinfo bi = new bookinfo();
@@ -56,6 +62,8 @@ pageEncoding="UTF-8"%>
 		}
 		//else
 			//response.sendRedirect("usermainpage.jsp");//无这本书
+		if(chapter_int>maxchapter)
+			response.sendRedirect("readbook.jsp?bid="+bid+"&chapter="+maxchapter);
 	}
 
 %>
@@ -67,7 +75,8 @@ pageEncoding="UTF-8"%>
 
 <style type="text/css">
 div#container {
-	width: 760px
+	width: 760px;
+	margin : 10px 0px 15px 400px;
 }
 div#content {
 	background-color: #EEEEEE;
@@ -197,12 +206,6 @@ position: absolute;right: 9px;text-indent: 100%;top: 10px;white-space: nowrap;wi
 		
 		<div id="footer">
 		<%if(maxchapter!=0){//若最大章节存在即书存在则显示导航栏
-			int chapter_int=2;//即使下面转换不成功 还是可以回到第一页
-			try{
-				chapter_int = Integer.parseInt(chapter);
-			}catch(NumberFormatException e){
-				e.printStackTrace();
-			}
 			if(chapter_int<=1)
 			{
 			%>

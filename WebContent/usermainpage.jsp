@@ -119,7 +119,7 @@ li {
 					<td><%=rli.getBookName()%></td>
 					<td><%=rli.getChapter()%></td>
 					<td><a
-						href="readbook.jsp?bid=<%=rli.getBookId()%>&chapter=<%=rli.getChapter()%>">点我继续阅读</a></td>
+						href="readbook.jsp?bid=<%=rli.getBookId()%>&chapter=<%=rli.getChapter()%>">立即阅读</a></td>
 				</tr>
 				<%
 					}

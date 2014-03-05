@@ -23,6 +23,16 @@
    <url-pattern>/UserManage</url-pattern>
   </servlet-mapping>
 
+<servlet>
+   <servlet-name>validate</servlet-name>
+   <jsp-file>/WEB-INF/user_validate.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>validate</servlet-name>
+   <url-pattern>/validate</url-pattern>
+  </servlet-mapping>
+
+
  <servlet>
       <servlet-name>admincommentservlet</servlet-name>
       <servlet-class>admin.servlet.admincommentservlet</servlet-class>
@@ -98,7 +108,9 @@
   </servlet-mapping>
   
 
-  
+  <welcome-file-list>
+    <welcome-file>userlogin.jsp</welcome-file>
+  </welcome-file-list>
   
   
   

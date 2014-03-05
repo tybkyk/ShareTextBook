@@ -92,13 +92,13 @@ function deletecomment(comid){
 	ArrayList<commenttable> commenttables = null;
 	int flag = 0;
 	commenttable comtable = new commenttable();
-	if (request.getParameter("userName") != null)
+	if (request.getParameter("userName") != null)//获取之前传来的查询表单 
 		uname = (String) request.getParameter("userName");
 	if (request.getParameter("bName") != null)
 		bname = (String) request.getParameter("bName");
 %>
 <%
-	if ((uname == null && bname == null)
+	if ((uname == null && bname == null)//判断查询框的内容 
 			|| (uname == "" && bname == "")) {
 		//do nothing
 	} else {

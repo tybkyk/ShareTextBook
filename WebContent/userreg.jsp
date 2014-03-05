@@ -59,7 +59,7 @@ response.setDateHeader("Expires", 0);
 			if ((field.value).length > 5 && (field.value).length < 21) {
 				//创建Ajax核心对象XMLHttpRequest
 				var xmlHttp = new XMLHttpRequest();
-				var url = "user_validate.jsp?userName=" + field.value
+				var url = "validate?userName=" + field.value
 						+ "&time=" + new Date().getTime();
 				//设置请求方式为GET，设置请求的URL，设置为异步提交,我觉得这句话才是核心
 				xmlHttp.open("GET", url, true);
@@ -111,8 +111,8 @@ response.setDateHeader("Expires", 0);
 				size="38" maxLength="22" onblur="validate()" /> 
 				<br /> 
 				<br /> 
-			邮 箱：<input type="text" id="email" value="" name="userEmail" size="38"
-				maxLength="22" /> 
+			邮 箱：<input type="email" id="email" value="" name="userEmail" size="38"
+				maxLength="22" />
 				<br /> 
 				<span id="spanalert"></span> 
 				<br /> 

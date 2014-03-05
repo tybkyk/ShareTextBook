@@ -41,7 +41,6 @@ public class adminloginservlet extends HttpServlet {
 				HttpSession session = request.getSession(true);				
 				session.setMaxInactiveInterval(60); // 设置session失效时间（timeout），单位为秒
 				session.setAttribute("adminname", adminName); // 用户名和密码正确，保存登录信息(获得session与jsp网页稍有不同)
-				System.out.println("adminloginservlet.doPost()");
 				request.getRequestDispatcher("/WEB-INF/AdminManagePage.jsp").forward(request, response);
 			} else if (info == 2 || info == 3) {
 				//2为不成功

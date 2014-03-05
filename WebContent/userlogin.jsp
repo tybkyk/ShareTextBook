@@ -82,7 +82,7 @@
 	}
 </script>
 <body>
-
+<p><a href="userreg.jsp">注册</a></p>
 <%=jumppath%>
 	<%
 		String uname = null;//检测登录

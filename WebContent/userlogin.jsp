@@ -11,17 +11,15 @@
 	response.setHeader("Pragma", "No-cache");
 	response.setDateHeader("Expires", -1);
 	response.setHeader("Cache-Control", "No-store");//这三行用处是让后退的时候不读缓存而去刷新页面从而可以检测是否登录了
-	String action = null;
-	String jumppath=null;
-	if (request.getParameter("action") != null) {//如果action参数中有logout，则是来退出登录的
-		action = request.getParameter("action");//获取action参数，进行相应操作
+	String action = request.getParameter("action") ;//获取action参数，进行相应操作
+	String jumppath=request.getParameter("jumppath") ;//获取jumppath参数，跳转回相应url
+	if (action!= null) {//如果action参数中有logout，则是来退出登录的
 		if (action.equals("logout")) {
 			session.invalidate();
 			response.sendRedirect("userlogin.jsp");
 		}
 	}
-	if (request.getParameter("jumppath") != null) {
-		jumppath = request.getParameter("jumppath");//获取jumppath参数，跳转回相应url
+	if (jumppath!= null) {
 		if(request.getParameter("chapter") != null)
 			jumppath+="&chapter="+request.getParameter("chapter");
 	}

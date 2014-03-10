@@ -36,7 +36,7 @@
 <title>edit</title>
 </head>
 <body>
-<script type="text/javascript">CKEDITOR.replace('editor01');</script>
+
 
 
 <textarea class="ckeditor" name="editor1">
@@ -53,7 +53,7 @@
 </textarea>
 
 
-
+<script type="text/javascript">CKEDITOR.replace('editor1');</script>
 
 
 </body>

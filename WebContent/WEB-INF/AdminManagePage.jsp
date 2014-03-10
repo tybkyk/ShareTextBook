@@ -76,6 +76,7 @@ function deletecomment(comid){
 					
 				} else if (xmlHttp.responseText == "2") {
 					alert("删除错误");
+					document.getElementById("submit").click();
 				}
 			} else {
 				alert("请求失败，错误码=" + xmlHttp.status);

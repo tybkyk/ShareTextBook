@@ -107,6 +107,16 @@
       <url-pattern>/topdfservlet</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+      <servlet-name>useraddbookservlet</servlet-name>
+      <servlet-class>user.servlet.useraddbookservlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+      <servlet-name>useraddbookservlet</servlet-name>
+      <url-pattern>/useraddbookservlet</url-pattern>
+  </servlet-mapping>
+  
 
   <welcome-file-list>
     <welcome-file>userlogin.jsp</welcome-file>

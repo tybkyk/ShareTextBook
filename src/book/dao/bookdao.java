@@ -24,14 +24,16 @@ public class bookdao{
 			bookinfo bi = new bookinfo();
 			int count =0;
 			String sql = "select * from books where bid=? and bchapter=?";
-			String sql2 = "SELECT * FROM books where bid='" + bid + "'";
+			String sql2 = "SELECT * FROM books where bid=?";
 			PreparedStatement psmt=con.prepareStatement(sql);
+			PreparedStatement psmt2=con.prepareStatement(sql2);
 			 
 			psmt.setString(1, bid);
 			psmt.setString(2, chapter);
+			psmt2.setString(1, bid);
 			
 			rs = psmt.executeQuery();
-			rs2 = stmt.executeQuery(sql2);
+			rs2 = psmt2.executeQuery();
 			//Book b = null;
 			while(rs2.next())
 			{

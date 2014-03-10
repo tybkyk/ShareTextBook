@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.mysql.jdbc.PreparedStatement;
+
 public class dbconnector {
 	public Connection initDB() {
 		// 初始化数据库连接方法
@@ -55,6 +57,23 @@ public class dbconnector {
 		}
 		// 关闭数据库连接（无结果集)
 	}
+	public void closeDB(PreparedStatement psmt, Connection con) {
+		if (psmt != null) { // 关闭声明
+			try {
+				psmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		if (con != null) { // 关闭连接对象
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		// 关闭数据库连接（无结果集)
+	}
 
 	public void closeDB(ResultSet rs, Statement stmt, Connection con) {
 		if (rs != null) { // 关闭记录集
@@ -67,6 +86,30 @@ public class dbconnector {
 		if (stmt != null) { // 关闭声明
 			try {
 				stmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		if (con != null) { // 关闭连接对象
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void closeDB(ResultSet rs, PreparedStatement psmt, Connection con) {
+		if (rs != null) { // 关闭记录集
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		if (psmt != null) { // 关闭声明
+			try {
+				psmt.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

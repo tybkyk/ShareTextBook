@@ -49,25 +49,27 @@ public class admindao {
 	public ArrayList<commenttable> getcomment(String uname, String bname) {
 		dbconnector dbcon = new dbconnector();
 		Connection con = null;
-		Statement stmt = null;
 		ResultSet rs = null;
+		PreparedStatement psmt=null;
 		ArrayList<commenttable> commenttables = new ArrayList<commenttable>();
 
 		if (uname != null && bname != null && uname != "" && bname != "") {// uname和bname都存在
 			try {
 				con = dbcon.initDB();
-				stmt = con.createStatement();
 
-				rs = stmt
-						.executeQuery("select comid,userbk_c.bchapter,ucomment,ucomment_date "
+				String sql="select comid,userbk_c.bchapter,ucomment,ucomment_date "
 								+ "from userbk_c,users "
 								+ "where users.uid=userbk_c.uid "
-								+ "and users.uname='"
-								+ uname
-								+ "' "
+								+ "and users.uname=? "
 								+ "and userbk_c.bid="
-								+ "(select distinct bid from books where bname='"
-								+ bname + "')");
+								+ "(select distinct bid from books where bname=?)";
+				
+				psmt=con.prepareStatement(sql);
+				
+				psmt.setString(1, uname);
+				psmt.setString(2, bname);
+				
+				rs = psmt.executeQuery();			
 				while (rs.next()) {
 					commenttable comt = new commenttable();
 					comt.setId(rs.getInt(1));
@@ -83,23 +85,25 @@ public class admindao {
 				e.printStackTrace();
 			} finally {
 				// 执行完关闭数据库
-				dbcon.closeDB(rs, stmt, con);
+				dbcon.closeDB(rs, psmt , con);
 			}
 		}
 
 		else if (uname != null && bname == ""&&uname!="") {// uname存在 bname不存在
 			try {
 				con = dbcon.initDB();
-				stmt = con.createStatement();
 
-				rs = stmt
-						.executeQuery("select distinct comid,books.bname,userbk_c.bchapter,ucomment,ucomment_date "
+				String sql="select distinct comid,books.bname,userbk_c.bchapter,ucomment,ucomment_date "
 								+ "from userbk_c,users,books "
 								+ "where users.uid=userbk_c.uid and "
-								+ "users.uname='"
-								+ uname
-								+ "'"
-								+ " and userbk_c.bid=books.bid");
+								+ "users.uname=?"
+								+ " and userbk_c.bid=books.bid";
+				
+				psmt=con.prepareStatement(sql);
+				
+				psmt.setString(1, uname);
+				
+				rs = psmt.executeQuery();		
 				while (rs.next()) {
 					commenttable comt = new commenttable();
 					comt.setId(rs.getInt(1));
@@ -116,20 +120,24 @@ public class admindao {
 				e.printStackTrace();
 			} finally {
 				// 执行完关闭数据库
-				dbcon.closeDB(rs, stmt, con);
+				dbcon.closeDB(rs, psmt, con);
 			}
 		}
 
 		else if (uname == "" && bname != null&&bname!="") {// uname不存在 bname存在
 			try {
 				con = dbcon.initDB();
-				stmt = con.createStatement();
 
-				rs = stmt
-						.executeQuery("select comid,userbk_c.bchapter,uname,ucomment,ucomment_date "
+				String sql="select comid,userbk_c.bchapter,uname,ucomment,ucomment_date "
 								+ "from userbk_c,users where bid="
-								+ "(select distinct bid from books where bname='"
-								+ bname + "') " + "and users.uid=userbk_c.uid");
+								+ "(select distinct bid from books where bname=?) " + "and users.uid=userbk_c.uid";
+				
+				psmt=con.prepareStatement(sql);
+				
+				psmt.setString(1, bname);
+				
+				rs = psmt.executeQuery();	
+				
 				while (rs.next()) {
 					commenttable comt = new commenttable();
 					comt.setId(rs.getInt(1));
@@ -146,7 +154,7 @@ public class admindao {
 				e.printStackTrace();
 			} finally {
 				// 执行完关闭数据库
-				dbcon.closeDB(rs, stmt, con);
+				dbcon.closeDB(rs, psmt, con);
 			}
 		}
 		return commenttables;
@@ -155,24 +163,22 @@ public class admindao {
 	public int deletecomt(String comid){
 		dbconnector dbcon = new dbconnector();
 		Connection con = null;
-		Statement stmt = null;
-		ResultSet rs = null;
-		
+		PreparedStatement psmt = null;		
 		int flag=0;
+		 
 		try {
 			con = dbcon.initDB();
-			stmt = con.createStatement();
 
-			String sql = "delete from userbk_c where comid='"+comid+"'";
-			stmt.executeUpdate(sql);
-			rs=stmt.executeQuery("select * from userbk_c where comid='"+comid+"'");
-			if(!rs.next())
-				flag=1;
+			String sql = "delete from userbk_c where comid=?";
+			psmt=con.prepareStatement(sql);			
+			psmt.setString(1, comid);				
+			flag=psmt.executeUpdate();
+
 		} catch (SQLException e) {
 			System.out.println("comid数据库删除异常");
 			e.printStackTrace();
 		} finally {
-			dbcon.closeDB(rs, stmt, con);
+			dbcon.closeDB(null, psmt, con);
 		}
 		return flag;
 	}

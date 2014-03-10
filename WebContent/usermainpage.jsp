@@ -6,10 +6,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <%
+	response.setHeader("Pragma", "No-cache");
+	response.setDateHeader("Expires", -1);
+	response.setHeader("Cache-Control", "No-store");//这三行用处是让后退的时候不读缓存而去刷新页面从而可以检测是否登录了	
 	String uid=null;
 	String uname = null;
 	String path = request.getRequestURI();//当前url
-	uid = "1";//假定用户uid为1  实际把下面注释取消
+	uid = "274140416";//假定用户uid为1  实际把下面注释取消
 	/*try {
 		uid = (String) session.getAttribute("uid");
 	} catch (Exception e) {

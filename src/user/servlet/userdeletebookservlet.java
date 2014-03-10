@@ -23,12 +23,6 @@ public class userdeletebookservlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//获取到购物项
-		String sid=request.getParameter("id");
-		Cart cart=(Cart)request.getSession().getAttribute("cart");
-		
-		
-		service.deleteCartItem(sid,cart);
-		request.getRequestDispatcher("/WEB-INF/jsp/listcart.jsp").forward(request, response);
 
 	}
 

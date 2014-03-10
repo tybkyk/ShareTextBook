@@ -4,60 +4,65 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import java.io.*;
-import java.util.ArrayList;
 
 import book.information.*;
 import user.information.*;
 import book.dao.*;
-import user.dao.*;
-import readlist.information.*;
 import readlist.dao.*;
 
-
-//还未完成！！
-
 public class useraddbookservlet extends HttpServlet {
-	
-	public useraddbookservlet(){
+
+	public useraddbookservlet() {
 		super();
 	}
-	
-	public void init() throws ServletException{}
-	
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
 
-		//1.获取要买的书
-		String sid=request.getParameter("id");
-		bookdao bdao = new bookdao();
-		bookinfo book =bdao.findbook(sid,"");  //需要修改！！
-		readlistdao rdao = new readlistdao();
-		
-        HttpSession session = request.getSession();
-		
-		userinfo user = (userinfo)session.getAttribute("user");
-		
-		response.sendRedirect("userselectbook.jsp");
-
-		
-		
-		if(rdao.addbookmark(book, user)){
-			
-	    	   ArrayList<readlistinfo> al=rdao.findAll();
-				session.setAttribute("al", al);
-	    	    response.sendRedirect("mainpage.jsp");
-			}
-	      else{
-				response.sendRedirect("cuowu.jsp");
-			}
-
+	public void init() throws ServletException {
 	}
-		
+
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+		String bid = request.getParameter("bid");
+		String chapter = request.getParameter("chapter");
+		String bname = request.getParameter("bname");
+		bname = new String(bname.getBytes("iso-8859-1"), "utf-8");
+		System.out.println(bname);
+		HttpSession session = request.getSession(true);
+		String uid = (String) session.getAttribute("uid");
+		boolean flag = false;
+
+		PrintWriter out = response.getWriter();
+
+		bookinfo book = new bookinfo();
+		book.setBookId(Integer.parseInt(bid));
+		book.setChapter(Integer.parseInt(chapter));
+		book.setBookName(bname);
+
+		readlistdao rdao = new readlistdao();
+		if (uid != null) {
+			flag = rdao.addbookmark(book, uid);
+
+			if (flag == true) {
+				out.print("1");//success
+				out.flush();
+				out.close();
+			} else {
+				out.print("2");//fail
+				out.flush();
+				out.close();
+			}
+			
+		}else{
+			out.print("3");
+			out.flush();
+			out.close();
+		} 
+	}
+
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		doPost(request, response);
 	}
-	
+
 }

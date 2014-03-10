@@ -96,7 +96,7 @@ MathJax.Hub.Config({
 		if (edit!= null)
 		{
 			if(edit.equals("true"))
-				editable=true;
+				editable=true ;
 			else 
 				editable=false;
 		}

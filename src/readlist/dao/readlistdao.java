@@ -26,20 +26,20 @@ public class readlistdao {
 		try {
 			con = dbcon.initDB();
 			PreparedStatement psmt2 = null;
-			String sql2 = "select * from bookmark where uid=? and bid=?";
+			String sql2 = "select * from bookmark where uid=? and bid=?";//判断书签存在与否
 			psmt2 = con.prepareStatement(sql2);
 			psmt2.setString(1, uid);
 			psmt2.setInt(2, book.getBookId());
 			rs = psmt2.executeQuery();
 			if (rs.next()) {
-				sql2 = "update bookmark set chapter=? , lastread_date=sysdate() where uid=? and bid=?";
+				sql2 = "update bookmark set chapter=? , lastread_date=sysdate() where uid=? and bid=?";//存在就更新
 				psmt2 = con.prepareStatement(sql2);
 				psmt2.setInt(1, book.getChapter());
 				psmt2.setString(2, uid);
 				psmt2.setInt(3, book.getBookId());
 				flag = psmt2.executeUpdate();
 			} else {
-				sql = "insert into bookmark(uid,bid,bname,chapter,lastread_date) values(?,?,?,?,sysdate())";
+				sql = "insert into bookmark(uid,bid,bname,chapter,lastread_date) values(?,?,?,?,sysdate())";//不存在就添加
 				psmt = con.prepareStatement(sql);
 				psmt.setString(1, uid);
 				psmt.setInt(2, book.getBookId());

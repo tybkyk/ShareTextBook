@@ -11,7 +11,7 @@ import book.dao.*;
 import readlist.dao.*;
 
 public class useraddbookservlet extends HttpServlet {
-
+//加书签
 	public useraddbookservlet() {
 		super();
 	}
@@ -26,7 +26,6 @@ public class useraddbookservlet extends HttpServlet {
 		String chapter = request.getParameter("chapter");
 		String bname = request.getParameter("bname");
 		bname = new String(bname.getBytes("iso-8859-1"), "utf-8");
-		System.out.println(bname);
 		HttpSession session = request.getSession(true);
 		String uid = (String) session.getAttribute("uid");
 		boolean flag = false;
